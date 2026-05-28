@@ -14,12 +14,12 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-forest-100 to-forest-200">
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-warm-200 to-ember-100">
             <span className="text-4xl">🔥</span>
           </div>
         )}
         {vendor.is_featured && (
-          <div className="absolute top-3 left-3 bg-forest-600 text-warm-50 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+          <div className="absolute top-3 left-3 bg-ember-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
             <Star className="w-3 h-3" /> Featured
           </div>
         )}
@@ -32,7 +32,7 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-display font-bold text-lg text-forest-700 group-hover:text-forest-500 transition-colors mb-1">
+        <h3 className="font-display font-bold text-lg text-forest-800 group-hover:text-ember-600 transition-colors mb-1">
           {vendor.name}
         </h3>
         <div className="flex items-center gap-1.5 text-stone-500 text-sm mb-3">

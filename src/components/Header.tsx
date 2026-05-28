@@ -12,9 +12,9 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 group">
-            <Flame className="w-7 h-7 text-forest-600 group-hover:text-forest-500 transition-colors" />
-            <span className="text-xl font-display font-bold text-forest-700">
-              Book<span className="text-forest-500">A</span>Schvitz
+            <Flame className="w-7 h-7 text-ember-500 group-hover:text-ember-400 transition-colors" />
+            <span className="text-xl font-display font-bold text-forest-800">
+              Book<span className="text-ember-500">A</span>Shvitz
             </span>
           </Link>
 

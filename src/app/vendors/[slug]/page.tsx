@@ -84,6 +84,17 @@ export default async function VendorPage({ params }: Props) {
               <p className="text-stone-500 flex items-center gap-1">
                 <MapPin className="w-4 h-4" /> {vendor.city}, {vendor.state} {vendor.zip_code || ''}
               </p>
+              {vendor.rating && (
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-1 text-ember-500">
+                    <Star className="w-4 h-4 fill-ember-400 text-ember-400" />
+                    <span className="font-semibold">{vendor.rating}</span>
+                  </div>
+                  {vendor.reviews && (
+                    <span className="text-stone-500 text-sm">({vendor.reviews} review{vendor.reviews !== 1 ? 's' : ''})</span>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Description */}

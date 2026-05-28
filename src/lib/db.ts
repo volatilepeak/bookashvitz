@@ -33,6 +33,8 @@ export interface Vendor {
   setup_types: string | null
   photo_url: string | null
   photos: string[]
+  rating: number | null
+  reviews: number | null
   is_premium: boolean
   is_verified: boolean
   is_featured: boolean

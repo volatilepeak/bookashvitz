@@ -38,6 +38,18 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
         <div className="flex items-center gap-1.5 text-stone-500 text-sm mb-3">
           <MapPin className="w-3.5 h-3.5" />
           <span>{vendor.city}, {vendor.state_abbr}</span>
+          {vendor.rating && (
+            <>
+              <span className="text-warm-300">·</span>
+              <span className="text-ember-500 font-medium flex items-center gap-0.5">
+                <Star className="w-3 h-3 fill-ember-400 text-ember-400" />
+                {vendor.rating}
+              </span>
+              {vendor.reviews && (
+                <span className="text-stone-400">({vendor.reviews})</span>
+              )}
+            </>
+          )}
           {vendor.price_range && (
             <>
               <span className="text-warm-300">·</span>

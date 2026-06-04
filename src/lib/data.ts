@@ -179,6 +179,21 @@ export async function getAllBlogSlugs(): Promise<{ slug: string }[]> {
   return rows as { slug: string }[]
 }
 
+export async function getRelatedVendors(vendorId: string, citySlug: string, stateSlug: string, limit = 3): Promise<Vendor[]> {
+  const sql = getDb()
+  // Try same city first, then fall back to same state
+  const rows = await sql`
+    SELECT * FROM vendors
+    WHERE id != ${vendorId} AND status = 'active'
+    ORDER BY
+      CASE WHEN city_slug = ${citySlug} THEN 0 ELSE 1 END,
+      CASE WHEN state_slug = ${stateSlug} THEN 0 ELSE 1 END,
+      is_featured DESC, rating DESC NULLS LAST
+    LIMIT ${limit}
+  `
+  return rows as Vendor[]
+}
+
 // ── Leads ──
 
 export async function createLead(lead: Omit<Lead, 'id' | 'created_at'>): Promise<Lead> {

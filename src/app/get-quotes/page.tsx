@@ -12,7 +12,7 @@ export default function GetQuotesPage() {
     <div className="section-padding">
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center mb-10">
-          <Flame className="w-12 h-12 mx-auto mb-4 text-forest-600" />
+          <Flame className="w-12 h-12 mx-auto mb-4 text-stone-600" />
           <h1 className="font-display text-4xl font-bold mb-4">Get Free Quotes</h1>
           <p className="text-stone-600 text-lg">
             Tell us about your event and we&apos;ll connect you with mobile sauna and cold plunge vendors in your area. It&apos;s free and takes under a minute.

@@ -53,8 +53,8 @@ export function VendorSubmitForm() {
   if (status === 'success') {
     return (
       <div className="text-center py-12 px-6">
-        <CheckCircle className="w-16 h-16 text-forest-500 mx-auto mb-4" />
-        <h3 className="font-display text-2xl font-bold text-forest-700 mb-2">Submission Received!</h3>
+        <CheckCircle className="w-16 h-16 text-stone-500 mx-auto mb-4" />
+        <h3 className="font-display text-2xl font-bold text-stone-700 mb-2">Submission Received!</h3>
         <p className="text-stone-600 max-w-md mx-auto">
           Thanks for submitting your business. We&apos;ll review your listing and get it live within 1–2 business days. You&apos;ll receive an email confirmation.
         </p>
@@ -112,8 +112,8 @@ export function VendorSubmitForm() {
               onClick={() => toggleCategory(cat.name)}
               className={`text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all ${
                 selectedCategories.includes(cat.name)
-                  ? 'bg-forest-50 border-forest-400 text-forest-700'
-                  : 'bg-white border-warm-300 text-stone-600 hover:border-forest-300'
+                  ? 'bg-stone-50 border-stone-400 text-stone-700'
+                  : 'bg-white border-stone-300 text-stone-600 hover:border-stone-300'
               }`}
             >
               <span className="mr-2">{cat.icon}</span> {cat.name}

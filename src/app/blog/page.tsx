@@ -27,7 +27,7 @@ export default async function BlogPage() {
         ) : (
           <div className="space-y-8">
             {posts.map(post => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="card hover:border-forest-300 transition-colors block overflow-hidden">
+              <Link key={post.id} href={`/blog/${post.slug}`} className="card hover:border-stone-300 transition-colors block overflow-hidden">
                 <div className="sm:flex">
                   {post.cover_image && (
                     <div className="relative sm:w-64 h-48 sm:h-auto flex-shrink-0 bg-stone-100">

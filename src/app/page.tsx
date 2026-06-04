@@ -15,30 +15,26 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative text-white overflow-hidden" style={{ minHeight: '600px' }}>
-        {/* Background image via Unsplash - sauna steam/warmth aesthetic */}
+      <section className="relative overflow-hidden" style={{ minHeight: '600px' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600&q=80')" }}
         />
-        {/* Warm dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/85 via-forest-900/80 to-forest-950/90" />
-        {/* Subtle warm glow at bottom */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ember-900/20 to-transparent" />
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/70 to-neutral-950/85" />
+
         <div className="relative max-w-6xl mx-auto px-4 py-28 md:py-40 text-center">
-          <p className="text-ember-300 uppercase tracking-widest text-sm font-semibold mb-4">Mobile Sauna & Cold Plunge Directory</p>
+          <p className="text-brand-300 uppercase tracking-[0.2em] text-sm font-medium mb-5">Mobile Sauna & Cold Plunge Directory</p>
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
             Book a Mobile Sauna<br className="hidden md:block" /> or Cold Plunge
           </h1>
-          <p className="text-lg md:text-xl text-warm-200 max-w-2xl mx-auto mb-10">
+          <p className="text-lg md:text-xl text-stone-300 max-w-2xl mx-auto mb-10">
             Find and book mobile sauna rentals, cold plunge tubs, and contrast therapy for weddings, parties, corporate events, and private retreats.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/get-quotes" className="btn-primary text-lg px-8 py-4">
               Get Free Quotes
             </Link>
-            <Link href="/states" className="inline-flex items-center justify-center px-8 py-4 border-2 border-warm-300/50 text-warm-100 font-semibold rounded-lg hover:bg-white/10 transition-all duration-200 text-lg">
+            <Link href="/states" className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-200 text-lg">
               Browse by City
             </Link>
           </div>
@@ -46,24 +42,24 @@ export default async function HomePage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-forest-800 text-white border-b border-forest-700">
+      <section className="bg-stone-900 text-white">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <p className="text-3xl font-bold text-ember-300">{vendorCount}+</p>
-              <p className="text-warm-300 text-sm mt-1">Vendors Listed</p>
+              <p className="text-3xl font-bold">{vendorCount}+</p>
+              <p className="text-stone-400 text-sm mt-1">Vendors Listed</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-ember-300">{cityCount}+</p>
-              <p className="text-warm-300 text-sm mt-1">Cities Covered</p>
+              <p className="text-3xl font-bold">{cityCount}+</p>
+              <p className="text-stone-400 text-sm mt-1">Cities Covered</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-ember-300">{CATEGORIES.length}</p>
-              <p className="text-warm-300 text-sm mt-1">Service Types</p>
+              <p className="text-3xl font-bold">{CATEGORIES.length}</p>
+              <p className="text-stone-400 text-sm mt-1">Service Types</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-ember-300">100%</p>
-              <p className="text-warm-300 text-sm mt-1">Free to Use</p>
+              <p className="text-3xl font-bold">100%</p>
+              <p className="text-stone-400 text-sm mt-1">Free to Use</p>
             </div>
           </div>
         </div>
@@ -73,18 +69,18 @@ export default async function HomePage() {
       <section className="section-padding">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="font-display text-3xl font-bold text-center mb-12">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {[
               { icon: MapPin, title: 'Find Local Vendors', desc: 'Browse mobile sauna and cold plunge vendors in your city. Filter by service type and event.' },
               { icon: Users, title: 'Request Quotes', desc: 'Submit your event details once and get personalized quotes from top local providers.' },
               { icon: CheckCircle, title: 'Book & Enjoy', desc: 'Compare options, choose your favorite, and book directly. Your wellness event is set.' },
             ].map((step, i) => (
               <div key={i} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-ember-50 flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="w-8 h-8 text-ember-600" />
+                <div className="w-14 h-14 rounded-full bg-brand-50 flex items-center justify-center mx-auto mb-4">
+                  <step.icon className="w-6 h-6 text-brand-500" />
                 </div>
                 <h3 className="font-display text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-stone-600">{step.desc}</p>
+                <p className="text-stone-500 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -93,11 +89,11 @@ export default async function HomePage() {
 
       {/* Featured Vendors */}
       {featured.length > 0 && (
-        <section className="section-padding bg-warm-100">
+        <section className="section-padding bg-stone-50">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-display text-3xl font-bold">Featured Vendors</h2>
-              <Link href="/states" className="text-ember-600 hover:text-ember-700 font-medium flex items-center gap-1">
+              <Link href="/states" className="text-brand-500 hover:text-brand-600 font-medium flex items-center gap-1 text-sm">
                 View All <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -114,7 +110,7 @@ export default async function HomePage() {
       <section className="section-padding">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="font-display text-3xl font-bold text-center mb-4">Browse by Service</h2>
-          <p className="text-stone-600 text-center mb-10 max-w-2xl mx-auto">
+          <p className="text-stone-500 text-center mb-10 max-w-2xl mx-auto">
             From traditional barrel saunas to ice bath tubs and full wellness packages — find exactly what you need.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -122,12 +118,12 @@ export default async function HomePage() {
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="card hover:border-ember-300 transition-colors p-6 flex items-start gap-4"
+                className="card hover:border-brand-200 transition-colors p-6 flex items-start gap-4"
               >
                 <span className="text-3xl">{cat.icon}</span>
                 <div>
                   <h3 className="font-display font-semibold text-lg">{cat.name}</h3>
-                  <p className="text-stone-600 text-sm mt-1">{cat.description}</p>
+                  <p className="text-stone-500 text-sm mt-1">{cat.description}</p>
                 </div>
               </Link>
             ))}
@@ -137,10 +133,10 @@ export default async function HomePage() {
 
       {/* Popular Cities */}
       {cities.length > 0 && (
-        <section className="section-padding bg-warm-100">
+        <section className="section-padding bg-stone-50">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="font-display text-3xl font-bold text-center mb-4">Popular Cities</h2>
-            <p className="text-stone-600 text-center mb-10">
+            <p className="text-stone-500 text-center mb-10">
               Explore mobile sauna and cold plunge vendors near you.
             </p>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -148,13 +144,13 @@ export default async function HomePage() {
                 <Link
                   key={`${city.city_slug}-${city.state_slug}`}
                   href={`/states/${city.state_slug}/${city.city_slug}`}
-                  className="card hover:border-ember-300 transition-colors p-5"
+                  className="card hover:border-brand-200 transition-colors p-5"
                 >
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-ember-500 flex-shrink-0" />
+                    <MapPin className="w-5 h-5 text-brand-400 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">{city.city}, {city.state_abbr}</p>
-                      <p className="text-sm text-stone-500">{city.vendor_count} vendor{Number(city.vendor_count) !== 1 ? 's' : ''}</p>
+                      <p className="text-sm text-stone-400">{city.vendor_count} vendor{Number(city.vendor_count) !== 1 ? 's' : ''}</p>
                     </div>
                   </div>
                 </Link>
@@ -175,20 +171,20 @@ export default async function HomePage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1600&q=80')" }}
         />
-        <div className="absolute inset-0 bg-forest-950/88" />
+        <div className="absolute inset-0 bg-neutral-950/88" />
         <div className="relative max-w-3xl mx-auto px-4 text-center text-white">
-          <Flame className="w-12 h-12 mx-auto mb-6 text-ember-400" />
+          <Flame className="w-10 h-10 mx-auto mb-6 text-brand-400" />
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
             Ready to Book Your Shvitz?
           </h2>
-          <p className="text-warm-200 text-lg mb-8">
+          <p className="text-stone-400 text-lg mb-8">
             Tell us about your event and we&apos;ll connect you with the best local vendors. It&apos;s free and takes under a minute.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/get-quotes" className="btn-primary text-lg px-8 py-4">
               Get Free Quotes
             </Link>
-            <Link href="/add-your-listing" className="inline-flex items-center justify-center px-8 py-4 border-2 border-warm-300/50 text-warm-100 font-semibold rounded-lg hover:bg-white/10 transition-all duration-200 text-lg">
+            <Link href="/add-your-listing" className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-200 text-lg">
               List Your Business
             </Link>
           </div>

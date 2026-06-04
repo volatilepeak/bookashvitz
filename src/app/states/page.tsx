@@ -33,7 +33,7 @@ export default async function StatesPage() {
               <Link
                 key={state.state_slug}
                 href={`/states/${state.state_slug}`}
-                className="card hover:border-forest-300 transition-colors p-5"
+                className="card hover:border-stone-300 transition-colors p-5"
               >
                 <h2 className="font-display font-semibold text-lg">{state.state}</h2>
                 <p className="text-sm text-stone-500 mt-1">

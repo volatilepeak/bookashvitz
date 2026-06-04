@@ -20,7 +20,7 @@ export default function CategoriesPage() {
             <Link
               key={cat.slug}
               href={`/categories/${cat.slug}`}
-              className="card hover:border-forest-300 transition-colors p-8"
+              className="card hover:border-stone-300 transition-colors p-8"
             >
               <span className="text-4xl block mb-4">{cat.icon}</span>
               <h2 className="font-display text-xl font-semibold mb-2">{cat.name}</h2>

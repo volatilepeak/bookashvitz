@@ -31,7 +31,7 @@ export default async function StatePage({ params }: Props) {
     <div className="section-padding">
       <div className="max-w-6xl mx-auto px-4">
         <nav className="text-sm text-stone-500 mb-6">
-          <Link href="/states" className="hover:text-forest-700">All States</Link>
+          <Link href="/states" className="hover:text-stone-700">All States</Link>
           <span className="mx-2">›</span>
           <span className="text-stone-800">{state.state}</span>
         </nav>
@@ -52,9 +52,9 @@ export default async function StatePage({ params }: Props) {
                 <Link
                   key={city.city_slug}
                   href={`/states/${state.state_slug}/${city.city_slug}`}
-                  className="card hover:border-forest-300 transition-colors p-4 flex items-center gap-3"
+                  className="card hover:border-stone-300 transition-colors p-4 flex items-center gap-3"
                 >
-                  <MapPin className="w-5 h-5 text-forest-600 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-stone-600 flex-shrink-0" />
                   <div>
                     <p className="font-semibold">{city.city}</p>
                     <p className="text-sm text-stone-500">{city.vendor_count} vendor{Number(city.vendor_count) !== 1 ? 's' : ''}</p>

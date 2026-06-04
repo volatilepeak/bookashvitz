@@ -25,7 +25,7 @@ export default async function BlogPostPage({ params }: Props) {
     <div className="section-padding">
       <div className="max-w-3xl mx-auto px-4">
         <nav className="text-sm text-stone-500 mb-6">
-          <Link href="/blog" className="hover:text-forest-700">Blog</Link>
+          <Link href="/blog" className="hover:text-stone-700">Blog</Link>
           <span className="mx-2">›</span>
           <span className="text-stone-800 line-clamp-1">{post.title}</span>
         </nav>
@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: Props) {
         <h1 className="font-display text-3xl md:text-4xl font-bold mb-8">{post.title}</h1>
 
         <div
-          className="prose prose-stone prose-lg max-w-none prose-headings:font-display prose-a:text-forest-700"
+          className="prose prose-stone prose-lg max-w-none prose-headings:font-display prose-a:text-stone-700"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 

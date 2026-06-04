@@ -30,9 +30,9 @@ export default async function CityPage({ params }: Props) {
     <div className="section-padding">
       <div className="max-w-6xl mx-auto px-4">
         <nav className="text-sm text-stone-500 mb-6">
-          <Link href="/states" className="hover:text-forest-700">All States</Link>
+          <Link href="/states" className="hover:text-stone-700">All States</Link>
           <span className="mx-2">›</span>
-          <Link href={`/states/${city.state_slug}`} className="hover:text-forest-700">{city.state}</Link>
+          <Link href={`/states/${city.state_slug}`} className="hover:text-stone-700">{city.state}</Link>
           <span className="mx-2">›</span>
           <span className="text-stone-800">{city.city}</span>
         </nav>

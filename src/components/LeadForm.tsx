@@ -54,8 +54,8 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
   if (status === 'success') {
     return (
       <div className="text-center py-12 px-6">
-        <CheckCircle className="w-16 h-16 text-forest-500 mx-auto mb-4" />
-        <h3 className="font-display text-2xl font-bold text-forest-700 mb-2">Request Sent!</h3>
+        <CheckCircle className="w-16 h-16 text-stone-500 mx-auto mb-4" />
+        <h3 className="font-display text-2xl font-bold text-stone-700 mb-2">Request Sent!</h3>
         <p className="text-stone-600 max-w-md mx-auto">
           Thanks for reaching out. We&apos;ll connect you with the best vendors in your area within 24–48 hours. Check your email for a confirmation.
         </p>

@@ -29,7 +29,7 @@ export default async function CategoryPage({ params }: Props) {
     <div className="section-padding">
       <div className="max-w-6xl mx-auto px-4">
         <nav className="text-sm text-stone-500 mb-6">
-          <Link href="/categories" className="hover:text-forest-700">Services</Link>
+          <Link href="/categories" className="hover:text-stone-700">Services</Link>
           <span className="mx-2">›</span>
           <span className="text-stone-800">{cat.name}</span>
         </nav>

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllVendorSlugs, getAllCities, getAllStates, getAllBlogSlugs } from '@/lib/data'
-import { CATEGORIES, SITE_URL } from '@/lib/constants'
+import { CATEGORIES, SITE_URL, TOP_CITIES } from '@/lib/constants'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [vendorSlugs, cities, states, blogSlugs] = await Promise.all([
@@ -19,14 +19,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/blog`, changeFrequency: 'weekly', priority: 0.7 },
   ]
 
-  const statePages: MetadataRoute.Sitemap = states.map(s => ({
-    url: `${SITE_URL}/states/${s.state_slug}`,
+  // State pages: merge DB states with target city states
+  const stateSlugSet: Record<string, boolean> = {}
+  states.forEach(s => { stateSlugSet[s.state_slug] = true })
+  TOP_CITIES.forEach(c => { stateSlugSet[c.stateSlug] = true })
+  const statePages: MetadataRoute.Sitemap = Object.keys(stateSlugSet).map(slug => ({
+    url: `${SITE_URL}/states/${slug}`,
     changeFrequency: 'weekly',
     priority: 0.8,
   }))
 
-  const cityPages: MetadataRoute.Sitemap = cities.map(c => ({
-    url: `${SITE_URL}/states/${c.state_slug}/${c.city_slug}`,
+  // City pages: merge DB cities with target cities
+  const cityKeySet: Record<string, boolean> = {}
+  cities.forEach(c => { cityKeySet[`${c.state_slug}/${c.city_slug}`] = true })
+  TOP_CITIES.forEach(c => { cityKeySet[`${c.stateSlug}/${c.citySlug}`] = true })
+  const cityPages: MetadataRoute.Sitemap = Object.keys(cityKeySet).map(key => ({
+    url: `${SITE_URL}/states/${key}`,
     changeFrequency: 'weekly',
     priority: 0.8,
   }))

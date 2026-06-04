@@ -41,7 +41,12 @@ export const TOP_CITIES = [
   { city: 'San Diego', state: 'California', stateAbbr: 'CA', citySlug: 'san-diego', stateSlug: 'california' },
   { city: 'Salt Lake City', state: 'Utah', stateAbbr: 'UT', citySlug: 'salt-lake-city', stateSlug: 'utah' },
   { city: 'Charlotte', state: 'North Carolina', stateAbbr: 'NC', citySlug: 'charlotte', stateSlug: 'north-carolina' },
+  { city: 'Minneapolis', state: 'Minnesota', stateAbbr: 'MN', citySlug: 'minneapolis', stateSlug: 'minnesota' },
 ]
+
+export function getTopCity(citySlug: string, stateSlug: string) {
+  return TOP_CITIES.find(c => c.citySlug === citySlug && c.stateSlug === stateSlug) || null
+}
 
 export function formatCategorySlug(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')

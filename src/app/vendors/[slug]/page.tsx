@@ -76,8 +76,42 @@ export default async function VendorPage({ params }: Props) {
   const related = await getRelatedVendors(vendor.id, vendor.city_slug, vendor.state_slug)
   const whatToExpect = getWhatToExpect(vendor.categories || [])
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: vendor.name,
+    description: vendor.description || `${vendor.name} offers mobile sauna and cold plunge rental services in ${vendor.city}, ${vendor.state}.`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: vendor.city,
+      addressRegion: vendor.state_abbr,
+      postalCode: vendor.zip_code || undefined,
+      addressCountry: 'US',
+    },
+    ...(vendor.phone && { telephone: vendor.phone }),
+    ...(vendor.website && { url: vendor.website }),
+    ...(vendor.photo_url && { image: vendor.photo_url }),
+    ...(vendor.rating && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: vendor.rating,
+        bestRating: 5,
+        ...(vendor.reviews && { reviewCount: vendor.reviews }),
+      },
+    }),
+    areaServed: {
+      '@type': 'City',
+      name: vendor.city,
+    },
+  }
+
   return (
-    <div className="section-padding">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="section-padding">
       <div className="max-w-6xl mx-auto px-4">
         <nav className="text-sm text-stone-500 mb-6">
           <Link href="/states" className="hover:text-stone-700">All States</Link>
@@ -322,5 +356,6 @@ export default async function VendorPage({ params }: Props) {
         )}
       </div>
     </div>
+    </>
   )
 }

@@ -18,7 +18,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden" style={{ minHeight: '600px' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1600&q=80')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1759216852954-88e547b8e01f?w=1600&q=80')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/70 to-neutral-950/85" />
 
@@ -169,7 +169,7 @@ export default async function HomePage() {
       <section className="relative section-padding overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=1600&q=80')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1745894118353-88e64617e064?w=1600&q=80')" }}
         />
         <div className="absolute inset-0 bg-neutral-950/88" />
         <div className="relative max-w-3xl mx-auto px-4 text-center text-white">

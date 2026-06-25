@@ -31,8 +31,8 @@ export async function sendLeadNotification(lead: LeadEmailData) {
   ].filter(Boolean).join('\n')
 
   await resend.emails.send({
-    from: 'BookAShvitz <hello@bookashvitz.com>',
-    to: 'hello@bookashvitz.com',
+    from: 'BookAShvitz <hello@findcoffeecarts.com>',
+    to: 'hello@findcoffeecarts.com',
     subject: `New Lead: ${lead.name} — ${lead.service_type || 'General Inquiry'}`,
     text: `New lead submitted on BookAShvitz!\n\n${details}`,
     html: `
@@ -63,7 +63,7 @@ export async function sendLeadNotification(lead: LeadEmailData) {
 
 export async function sendLeadConfirmation(lead: LeadEmailData) {
   await resend.emails.send({
-    from: 'BookAShvitz <hello@bookashvitz.com>',
+    from: 'BookAShvitz <hello@findcoffeecarts.com>',
     to: lead.email,
     subject: `We got your request, ${lead.name}!`,
     html: `
@@ -111,8 +111,8 @@ interface VendorSubmissionData {
 
 export async function sendVendorSubmissionNotification(data: VendorSubmissionData) {
   await resend.emails.send({
-    from: 'BookAShvitz <hello@bookashvitz.com>',
-    to: 'hello@bookashvitz.com',
+    from: 'BookAShvitz <hello@findcoffeecarts.com>',
+    to: 'hello@findcoffeecarts.com',
     subject: `New Vendor Submission: ${data.business_name}`,
     html: `
       <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">

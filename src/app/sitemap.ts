@@ -17,6 +17,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/get-quotes`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/add-your-listing`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/blog`, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/custom-builds`, changeFrequency: 'weekly', priority: 0.9 },
+    ...TOP_CITIES.map(c => ({
+      url: `${SITE_URL}/custom-builds/${c.citySlug}`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
   ]
 
   // State pages: merge DB states with target city states

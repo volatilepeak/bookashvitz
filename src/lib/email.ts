@@ -135,3 +135,50 @@ export async function sendVendorSubmissionNotification(data: VendorSubmissionDat
     `,
   })
 }
+
+interface BuildLeadData {
+  name: string
+  email: string
+  phone?: string | null
+  project_type: string
+  build_type?: string | null
+  location_type?: string | null
+  budget_range?: string | null
+  timeline?: string | null
+  city: string
+  state?: string | null
+  message?: string | null
+}
+
+export async function sendBuildLeadNotification(lead: BuildLeadData) {
+  await resend.emails.send({
+    from: 'BookAShvitz <hello@bookashvitz.com>',
+    to: 'hello@bookashvitz.com',
+    subject: `BUILD LEAD: ${lead.name} — ${lead.project_type} in ${lead.city}${lead.budget_range ? ` (${lead.budget_range})` : ''}`,
+    html: `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #92400e; padding: 24px; text-align: center;">
+          <h1 style="color: #fef3c7; margin: 0; font-size: 24px;">New Build Lead</h1>
+          <p style="color: #fde68a; margin: 8px 0 0; font-size: 14px;">Custom Sauna & Cold Plunge Installation</p>
+        </div>
+        <div style="padding: 24px; background: #fdfcfa; border: 1px solid #e5ddd0;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Name</td><td style="padding: 8px 0;">${lead.name}</td></tr>
+            <tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Email</td><td style="padding: 8px 0;"><a href="mailto:${lead.email}">${lead.email}</a></td></tr>
+            ${lead.phone ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Phone</td><td style="padding: 8px 0;"><a href="tel:${lead.phone}">${lead.phone}</a></td></tr>` : ''}
+            <tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Project Type</td><td style="padding: 8px 0;"><strong>${lead.project_type}</strong></td></tr>
+            ${lead.build_type ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Build Type</td><td style="padding: 8px 0;">${lead.build_type}</td></tr>` : ''}
+            ${lead.location_type ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Property Type</td><td style="padding: 8px 0;">${lead.location_type}</td></tr>` : ''}
+            ${lead.budget_range ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Budget</td><td style="padding: 8px 0;"><strong style="color: #059669;">${lead.budget_range}</strong></td></tr>` : ''}
+            ${lead.timeline ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Timeline</td><td style="padding: 8px 0;">${lead.timeline}</td></tr>` : ''}
+            <tr><td style="padding: 8px 0; font-weight: bold; color: #92400e;">Location</td><td style="padding: 8px 0;">${lead.city}${lead.state ? `, ${lead.state}` : ''}</td></tr>
+          </table>
+          ${lead.message ? `<div style="margin-top: 16px; padding: 16px; background: #fef3c7; border-radius: 8px;"><strong style="color: #92400e;">Project Details:</strong><br/>${lead.message}</div>` : ''}
+        </div>
+        <div style="padding: 16px; text-align: center; color: #99a3af; font-size: 12px;">
+          BookAShvitz.com — Custom Sauna & Cold Plunge Builds
+        </div>
+      </div>
+    `,
+  })
+}

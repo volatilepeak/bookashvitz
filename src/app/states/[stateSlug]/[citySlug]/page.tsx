@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const stName = city?.state || topCity?.state
   if (!name) return { title: 'City Not Found' }
   return {
-    title: `Mobile Sauna & Cold Plunge Rentals in ${name}, ${stAbbr}`,
-    description: `Find mobile sauna rental, cold plunge, and contrast therapy vendors in ${name}, ${stName}. Compare services and get free quotes for your event.`,
+    title: `Best Mobile Sauna & Cold Plunge Rentals in ${name}, ${stAbbr} (2025)`,
+    description: `Compare the top mobile sauna and cold plunge rental vendors in ${name}, ${stName}. See prices, ratings, and reviews. Get free quotes for your event in under 60 seconds.`,
   }
 }
 

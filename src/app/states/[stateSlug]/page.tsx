@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const stateName = state?.state || topCities[0]?.state
   if (!stateName) return { title: 'State Not Found' }
   return {
-    title: `Mobile Sauna & Cold Plunge Rentals in ${stateName}`,
-    description: `Find mobile sauna and cold plunge rental vendors across ${stateName}. Browse vendors, compare services, and get free quotes.`,
+    title: `Mobile Sauna & Cold Plunge Rentals in ${stateName} (2025)`,
+    description: `Find and compare mobile sauna rental and cold plunge vendors across ${stateName}. Browse by city, read reviews, and get free quotes for your event.`,
   }
 }
 

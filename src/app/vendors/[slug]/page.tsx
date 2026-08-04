@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!vendor) return { title: 'Vendor Not Found' }
   const cats = vendor.categories?.join(', ') || 'Mobile Sauna & Cold Plunge'
   return {
-    title: `${vendor.name} — ${cats} in ${vendor.city}, ${vendor.state_abbr}`,
-    description: vendor.description || `${vendor.name} offers ${cats.toLowerCase()} services in ${vendor.city}, ${vendor.state}. Get a free quote today.`,
+    title: `${vendor.name} — ${cats} in ${vendor.city}, ${vendor.state_abbr} | Pricing & Reviews`,
+    description: vendor.description || `Book ${vendor.name} for ${cats.toLowerCase()} in ${vendor.city}, ${vendor.state}. See pricing, reviews, photos, and get a free quote in 60 seconds.`,
   }
 }
 

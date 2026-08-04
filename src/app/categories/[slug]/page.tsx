@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = getCategoryBySlug(slug)
   if (!cat) return { title: 'Category Not Found' }
   return {
-    title: `${cat.name} — Find & Book Vendors`,
-    description: `${cat.description} Browse ${cat.name.toLowerCase()} vendors, compare services, and get free quotes for your event.`,
+    title: `${cat.name} Near You — Compare Prices & Book (2025)`,
+    description: `Find the best ${cat.name.toLowerCase()} vendors near you. Compare ${cat.name.toLowerCase()} prices, read reviews, and get free quotes in under 60 seconds. 100+ vendors nationwide.`,
   }
 }
 

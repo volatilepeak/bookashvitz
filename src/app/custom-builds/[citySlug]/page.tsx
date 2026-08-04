@@ -72,6 +72,10 @@ const cityContent: Record<string, { hook: string; detail: string }> = {
     hook: "Minneapolis might have more saunas per capita than any city in America. The Twin Cities' Scandinavian roots mean custom sauna building is practically a local tradition.",
     detail: "South Minneapolis backyards, lake cabins across the Chain of Lakes, St. Croix Valley retreats — Twin Cities builders carry on the Finnish sauna tradition with modern custom builds designed for Minnesota winters."
   },
+  'topeka': {
+    hook: "Topeka homeowners are catching on to the backyard sauna trend, and Kansas builders are stepping up to meet the demand.",
+    detail: "Spacious Kansas lots, affordable construction costs, and four-season weather that makes a sauna useful year-round — Topeka is a great market for custom sauna and cold plunge builds. Local contractors serve the greater Topeka area including Lawrence, Manhattan, and the Kansas City metro."
+  },
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

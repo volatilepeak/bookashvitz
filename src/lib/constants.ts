@@ -43,6 +43,7 @@ export const TOP_CITIES = [
   { city: 'Charlotte', state: 'North Carolina', stateAbbr: 'NC', citySlug: 'charlotte', stateSlug: 'north-carolina' },
   { city: 'Minneapolis', state: 'Minnesota', stateAbbr: 'MN', citySlug: 'minneapolis', stateSlug: 'minnesota' },
   { city: 'Topeka', state: 'Kansas', stateAbbr: 'KS', citySlug: 'topeka', stateSlug: 'kansas' },
+  { city: 'Tampa', state: 'Florida', stateAbbr: 'FL', citySlug: 'tampa', stateSlug: 'florida' },
 ]
 
 export function getTopCity(citySlug: string, stateSlug: string) {

@@ -76,6 +76,10 @@ const cityContent: Record<string, { hook: string; detail: string }> = {
     hook: "Topeka homeowners are catching on to the backyard sauna trend, and Kansas builders are stepping up to meet the demand.",
     detail: "Spacious Kansas lots, affordable construction costs, and four-season weather that makes a sauna useful year-round — Topeka is a great market for custom sauna and cold plunge builds. Local contractors serve the greater Topeka area including Lawrence, Manhattan, and the Kansas City metro."
   },
+  'tampa': {
+    hook: "Tampa Bay's booming wellness scene and year-round outdoor lifestyle make it one of Florida's hottest markets for mobile saunas, cold plunges, and custom builds.",
+    detail: "From waterfront properties in South Tampa to backyards in Wesley Chapel and Brandon, Tampa Bay builders and rental vendors serve the full metro area including St. Petersburg, Clearwater, and Sarasota."
+  },
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -44,6 +44,8 @@ export const TOP_CITIES = [
   { city: 'Minneapolis', state: 'Minnesota', stateAbbr: 'MN', citySlug: 'minneapolis', stateSlug: 'minnesota' },
   { city: 'Topeka', state: 'Kansas', stateAbbr: 'KS', citySlug: 'topeka', stateSlug: 'kansas' },
   { city: 'Tampa', state: 'Florida', stateAbbr: 'FL', citySlug: 'tampa', stateSlug: 'florida' },
+  { city: 'Plano', state: 'Texas', stateAbbr: 'TX', citySlug: 'plano', stateSlug: 'texas' },
+  { city: 'St. Louis Park', state: 'Minnesota', stateAbbr: 'MN', citySlug: 'st-louis-park', stateSlug: 'minnesota' },
 ]
 
 export function getTopCity(citySlug: string, stateSlug: string) {

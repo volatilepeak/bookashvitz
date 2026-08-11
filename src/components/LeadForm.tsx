@@ -32,7 +32,12 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
       city: data.get('city') as string || defaultCity,
       state: data.get('state') as string || defaultState,
       service_type: data.get('service_type') as string,
-      message: data.get('message') as string,
+      message: [
+        data.get('duration') ? `Duration: ${data.get('duration')}` : '',
+        data.get('venue_type') ? `Venue: ${data.get('venue_type')}` : '',
+        data.get('budget') ? `Budget: ${data.get('budget')}` : '',
+        data.get('message') as string || '',
+      ].filter(Boolean).join('\n'),
       source_page: sourcePage,
     }
 
@@ -57,7 +62,7 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
         <CheckCircle className="w-16 h-16 text-stone-500 mx-auto mb-4" />
         <h3 className="font-display text-2xl font-bold text-stone-700 mb-2">Request Sent!</h3>
         <p className="text-stone-600 max-w-md mx-auto">
-          Thanks for reaching out. We&apos;ll connect you with the best vendors in your area within 24–48 hours. Check your email for a confirmation.
+          Thanks for reaching out. We&apos;ll connect you with the best vendors in your area within 24-48 hours. Check your email for a confirmation.
         </p>
         <button onClick={() => setStatus('idle')} className="btn-secondary mt-6 text-sm">
           Submit Another Request
@@ -68,6 +73,7 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Row 1: Name + Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-stone-700 mb-1">Full Name *</label>
@@ -79,6 +85,7 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
         </div>
       </div>
 
+      {/* Row 2: Phone + Service Type */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-stone-700 mb-1">Phone</label>
@@ -93,7 +100,8 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* Row 3: Event Type + Date */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="event_type" className="block text-sm font-medium text-stone-700 mb-1">Event Type</label>
           <select id="event_type" name="event_type" className="select-field">
@@ -105,17 +113,63 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
           <label htmlFor="event_date" className="block text-sm font-medium text-stone-700 mb-1">Event Date</label>
           <input type="date" id="event_date" name="event_date" className="input-field" />
         </div>
+      </div>
+
+      {/* Row 4: Duration + Guest Count */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="duration" className="block text-sm font-medium text-stone-700 mb-1">Duration</label>
+          <select id="duration" name="duration" className="select-field">
+            <option value="">Select...</option>
+            <option value="2-3 hours">2-3 hours</option>
+            <option value="Half day (4 hours)">Half day (4 hours)</option>
+            <option value="Full day (8 hours)">Full day (8 hours)</option>
+            <option value="24 hours">24 hours</option>
+            <option value="Multi-day">Multi-day</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
         <div>
           <label htmlFor="guest_count" className="block text-sm font-medium text-stone-700 mb-1">Guest Count</label>
           <input type="number" id="guest_count" name="guest_count" min="1" className="input-field" placeholder="25" />
         </div>
       </div>
 
+      {/* Row 5: Venue Type + Budget */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="venue_type" className="block text-sm font-medium text-stone-700 mb-1">Venue Type</label>
+          <select id="venue_type" name="venue_type" className="select-field">
+            <option value="">Select...</option>
+            <option value="Backyard / Residential">Backyard / Residential</option>
+            <option value="Airbnb / Rental Property">Airbnb / Rental Property</option>
+            <option value="Event Venue">Event Venue</option>
+            <option value="Office / Corporate Campus">Office / Corporate Campus</option>
+            <option value="Park / Outdoor Space">Park / Outdoor Space</option>
+            <option value="Gym / Fitness Studio">Gym / Fitness Studio</option>
+            <option value="Hotel / Resort">Hotel / Resort</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="budget" className="block text-sm font-medium text-stone-700 mb-1">Budget</label>
+          <select id="budget" name="budget" className="select-field">
+            <option value="">Select...</option>
+            <option value="Under $500">Under $500</option>
+            <option value="$500 - $1,000">$500 - $1,000</option>
+            <option value="$1,000 - $2,000">$1,000 - $2,000</option>
+            <option value="$2,000+">$2,000+</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Row 6: City + State (only if not pre-filled) */}
       {!defaultCity && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="city" className="block text-sm font-medium text-stone-700 mb-1">City</label>
-            <input type="text" id="city" name="city" className="input-field" placeholder="Austin" />
+            <label htmlFor="city" className="block text-sm font-medium text-stone-700 mb-1">City *</label>
+            <input type="text" id="city" name="city" required className="input-field" placeholder="Austin" />
           </div>
           <div>
             <label htmlFor="state" className="block text-sm font-medium text-stone-700 mb-1">State</label>
@@ -124,9 +178,10 @@ export function LeadForm({ sourcePage = '', defaultCity = '', defaultState = '',
         </div>
       )}
 
+      {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-1">Tell us about your event</label>
-        <textarea id="message" name="message" rows={4} className="input-field resize-none" placeholder="Any details about your event, venue, or special requests..." />
+        <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-1">Anything else?</label>
+        <textarea id="message" name="message" rows={3} className="input-field resize-none" placeholder="Special requests, venue details, questions for vendors..." />
       </div>
 
       {status === 'error' && (

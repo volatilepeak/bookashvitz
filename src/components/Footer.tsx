@@ -57,15 +57,21 @@ export function Footer() {
               <li><Link href="/blog" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Blog</Link></li>
               <li><Link href="/states" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">All States</Link></li>
               <li><a href="mailto:hello@bookashvitz.com" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Contact Us</a></li>
+              <li><Link href="/about" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">About</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-stone-700 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-warm-500 text-sm">&copy; {new Date().getFullYear()} BookAShvitz. All rights reserved.</p>
-          <p className="text-warm-500 text-sm">
-            Also check out <a href="https://findcoffeecarts.com" target="_blank" rel="noopener noreferrer" className="text-stone-300 hover:text-stone-50 transition-colors">FindCoffeeCarts.com</a>
+        <div className="border-t border-stone-700 mt-12 pt-8">
+          <p className="text-warm-500 text-xs leading-relaxed mb-4">
+            BookAShvitz is an independent directory. Listings are created using publicly available business information. We are not affiliated with, endorsed by, or acting on behalf of any listed vendor. Vendors may <a href="mailto:hello@bookashvitz.com" className="text-stone-400 hover:text-stone-300 underline">request listing updates or removal</a> at any time.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-warm-500 text-sm">&copy; {new Date().getFullYear()} BookAShvitz. All rights reserved.</p>
+            <p className="text-warm-500 text-sm">
+              Also check out <a href="https://findcoffeecarts.com" target="_blank" rel="noopener noreferrer" className="text-stone-300 hover:text-stone-50 transition-colors">FindCoffeeCarts.com</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

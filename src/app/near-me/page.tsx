@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Mobile Sauna & Cold Plunge Rentals Near Me — Find Local Vendors (2025)',
-  description: 'Find mobile sauna rentals, cold plunge tubs, and contrast therapy vendors near you. Browse 100+ vendors in 60+ cities. Compare prices, read reviews, and get free quotes in under 60 seconds.',
+  description: 'Find mobile sauna rentals, cold plunge rentals, and contrast therapy vendors near you. Browse 100+ vendors in 60+ cities. Compare prices, read reviews, and get free quotes in under 60 seconds.',
   keywords: ['mobile sauna near me', 'sauna near me', 'sauna rental near me', 'cold plunge near me', 'mobile sauna for rent near me', 'cold plunge rental near me', 'sauna rentals near me', 'mobile cold plunge near me'],
 }
 
@@ -21,7 +21,7 @@ export default async function NearMePage() {
           Mobile Sauna & Cold Plunge Rentals Near You
         </h1>
         <p className="text-stone-500 text-lg mb-6 max-w-3xl">
-          Find mobile sauna rentals, cold plunge tubs, and contrast therapy vendors in your area. We have {vendorCount}+ vendors across {cityCount}+ cities nationwide. Select your city below or request quotes and we&apos;ll match you with local providers.
+          Find mobile sauna rentals, cold plunge rentals, and contrast therapy vendors in your area. We have {vendorCount}+ vendors across {cityCount}+ cities nationwide. Select your city below or request quotes and we&apos;ll match you with local providers.
         </p>
 
         <div className="prose prose-stone max-w-none mb-12">
@@ -72,7 +72,7 @@ export default async function NearMePage() {
 
           <h2 className="font-display">Popular Services</h2>
           <p>
-            The most popular mobile wellness services include <Link href="/categories/mobile-sauna-rental" className="text-brand-600">mobile sauna rentals</Link> for backyard parties and events, <Link href="/categories/cold-plunge-rental" className="text-brand-600">cold plunge tub rentals</Link> for athletic recovery and corporate wellness, and <Link href="/categories/contrast-therapy" className="text-brand-600">contrast therapy packages</Link> that combine hot and cold for the full experience.
+            The most popular mobile wellness services include <Link href="/categories/mobile-sauna-rental" className="text-brand-600">mobile sauna rentals</Link> for backyard parties and events, <Link href="/categories/cold-plunge-rental" className="text-brand-600">cold plunge rentals</Link> for athletic recovery and corporate wellness, and <Link href="/categories/contrast-therapy" className="text-brand-600">contrast therapy packages</Link> that combine hot and cold for the full experience.
           </p>
           <p>
             Looking to build your own instead of renting? Check out our <Link href="/custom-builds" className="text-brand-600">custom sauna and cold plunge builder directory</Link>.

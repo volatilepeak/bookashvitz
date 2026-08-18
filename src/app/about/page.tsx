@@ -17,7 +17,7 @@ export default function AboutPage() {
         <div className="prose prose-stone max-w-none">
           <h2 className="font-display">What Is BookAShvitz?</h2>
           <p>
-            BookAShvitz is a free online directory that helps people find mobile sauna rentals, cold plunge tubs, contrast therapy, and custom sauna builders in their area. We connect customers with vendors — we are not a booking service, event planner, or vendor ourselves.
+            BookAShvitz is a free online directory that helps people find mobile sauna rentals, cold plunge rentals, contrast therapy, and custom sauna builders in their area. We connect customers with vendors — we are not a booking service, event planner, or vendor ourselves.
           </p>
 
           <h2 className="font-display">How It Works</h2>

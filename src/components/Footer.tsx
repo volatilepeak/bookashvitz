@@ -16,7 +16,7 @@ export function Footer() {
               <span className="text-xl font-display font-bold text-warm-50">BookAShvitz</span>
             </Link>
             <p className="text-warm-400 text-sm leading-relaxed">
-              The easiest way to find and book mobile sauna rentals, cold plunge tubs, and contrast therapy setups for your next event.
+              The easiest way to find and book mobile sauna rentals, cold plunge rentals, and contrast therapy setups for your next event.
             </p>
           </div>
 

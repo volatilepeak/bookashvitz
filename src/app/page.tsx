@@ -28,7 +28,7 @@ export default async function HomePage() {
             Book a Mobile Sauna<br className="hidden md:block" /> or Cold Plunge
           </h1>
           <p className="text-lg md:text-xl text-stone-300 max-w-2xl mx-auto mb-10">
-            Find and book mobile sauna rentals, cold plunge tubs, and contrast therapy for weddings, parties, corporate events, and private retreats.
+            Find and book mobile sauna rentals, cold plunge rentals, and contrast therapy for weddings, parties, corporate events, and private retreats.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/get-quotes" className="btn-primary text-lg px-8 py-4">
@@ -111,7 +111,7 @@ export default async function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="font-display text-3xl font-bold text-center mb-4">Browse by Service</h2>
           <p className="text-stone-500 text-center mb-10 max-w-2xl mx-auto">
-            From traditional barrel saunas to ice bath tubs and full wellness packages — find exactly what you need.
+            From traditional barrel saunas to ice bath setups and full wellness packages — find exactly what you need.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {CATEGORIES.map(cat => (

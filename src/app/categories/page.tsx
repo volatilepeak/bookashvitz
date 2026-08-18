@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: 'Browse mobile sauna rentals, cold plunge tubs, contrast therapy, infrared saunas, ice baths, and wellness event packages.',
+  description: 'Browse mobile sauna rentals, cold plunge rentals, contrast therapy, infrared saunas, ice baths, and wellness event packages.',
 }
 
 export default function CategoriesPage() {

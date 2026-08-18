@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Custom Sauna & Cold Plunge Builders — Get Free Quotes',
-  description: 'Find qualified sauna builders and cold plunge installation contractors near you. Custom backyard saunas, indoor saunas, cold plunge tubs, and contrast therapy setups. Get free quotes from local builders.',
+  description: 'Find qualified sauna builders and cold plunge installation contractors near you. Custom backyard saunas, indoor saunas, cold plunge installations, and contrast therapy setups. Get free quotes from local builders.',
   keywords: ['custom sauna builder', 'sauna installation', 'cold plunge installation', 'backyard sauna', 'home sauna builder', 'sauna contractor near me', 'cold plunge contractor'],
 }
 
@@ -22,7 +22,7 @@ export default function CustomBuildsPage() {
               Build Your Own Sauna or Cold Plunge
             </h1>
             <p className="text-lg text-stone-300 mb-8 leading-relaxed">
-              Connect with qualified contractors who build custom saunas, cold plunge tubs, and contrast therapy setups for homes, Airbnbs, gyms, and commercial spaces. Get free quotes from local builders.
+              Connect with qualified contractors who build custom saunas, cold plunge installations, and contrast therapy setups for homes, Airbnbs, gyms, and commercial spaces. Get free quotes from local builders.
             </p>
             <a href="#get-quotes" className="btn-primary text-lg px-8 py-4">
               Get Free Builder Quotes

@@ -1,13 +1,13 @@
 export const SITE_NAME = 'BookAShvitz'
 export const SITE_URL = 'https://bookashvitz.com'
-export const SITE_DESCRIPTION = 'Find and book mobile sauna rentals, cold plunge tubs, and contrast therapy setups for your next event. Browse vendors by city and get free quotes.'
+export const SITE_DESCRIPTION = 'Find and book mobile sauna rentals, cold plunge rentals, and contrast therapy setups for your next event. Browse vendors by city and get free quotes.'
 
 export const CATEGORIES = [
   { name: 'Mobile Sauna Rental', slug: 'mobile-sauna-rental', icon: '🔥', description: 'Traditional and barrel sauna trailers delivered to your event.' },
-  { name: 'Cold Plunge Rental', slug: 'cold-plunge-rental', icon: '🧊', description: 'Portable cold plunge tubs for recovery and wellness events.' },
+  { name: 'Cold Plunge Rental', slug: 'cold-plunge-rental', icon: '🧊', description: 'Portable cold plunge rentals for recovery and wellness events.' },
   { name: 'Contrast Therapy', slug: 'contrast-therapy', icon: '♨️', description: 'Hot sauna + cold plunge combos — the ultimate wellness experience.' },
   { name: 'Infrared Sauna', slug: 'infrared-sauna', icon: '🌡️', description: 'Modern infrared sauna rentals — smoke-free and indoor-friendly.' },
-  { name: 'Ice Bath / Tub Rental', slug: 'ice-bath-tub-rental', icon: '❄️', description: 'Ice bath tubs for fitness events, recovery sessions, and parties.' },
+  { name: 'Ice Bath Rental', slug: 'ice-bath-rental', icon: '❄️', description: 'Ice bath setups for fitness events, recovery sessions, and parties.' },
   { name: 'Wellness Event Packages', slug: 'wellness-event-packages', icon: '✨', description: 'Full-service wellness packages with saunas, plunges, and more.' },
 ]
 

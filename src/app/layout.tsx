@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: `${SITE_NAME} — Find & Book Mobile Sauna Rentals Near You`,
     template: `%s | ${SITE_NAME}`,
   },
-  description: 'Find mobile sauna rentals, cold plunge tubs, and contrast therapy near you. Compare 100+ vendors, see prices and reviews, and get free quotes in 60 seconds.',
+  description: 'Find mobile sauna rentals, cold plunge rentals, and contrast therapy near you. Compare 100+ vendors, see prices and reviews, and get free quotes in 60 seconds.',
   keywords: ['mobile sauna rental', 'mobile sauna rental near me', 'cold plunge rental', 'sauna for rent', 'mobile sauna for rent', 'sauna rental near me', 'contrast therapy rental', 'ice bath rental', 'mobile sauna service', 'cold plunge rental near me'],
   metadataBase: new URL(SITE_URL),
   openGraph: {

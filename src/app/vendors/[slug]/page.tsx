@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { MapPin, Phone, Globe, Mail, Instagram, Users, DollarSign, CheckCircle, Star, Flame, Clock, Truck, Droplets, Calendar, PartyPopper } from 'lucide-react'
 import { getVendorBySlug, getRelatedVendors } from '@/lib/data'
+import VendorImage from '@/components/VendorImage'
 import VendorCard from '@/components/VendorCard'
 import LeadForm from '@/components/LeadForm'
 import type { Metadata } from 'next'
@@ -130,23 +130,12 @@ export default async function VendorPage({ params }: Props) {
             {allPhotos.length > 0 && (
               <div className="mb-8">
                 <div className="relative aspect-video rounded-xl overflow-hidden bg-stone-100">
-                  <img
+                  <VendorImage
                     src={allPhotos[0]}
                     alt={vendor.name}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.currentTarget
-                      target.style.display = 'none'
-                      const fallback = target.nextElementSibling as HTMLElement
-                      if (fallback) fallback.style.display = 'flex'
-                    }}
+                    fallbackName={vendor.name}
                   />
-                  <div className="w-full h-full items-center justify-center bg-gradient-to-br from-brand-50 to-stone-100 hidden absolute inset-0">
-                    <div className="text-center">
-                      <span className="text-6xl block mb-2">🔥</span>
-                      <span className="text-sm text-stone-400 font-medium">{vendor.name}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             )}

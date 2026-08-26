@@ -5,7 +5,7 @@ import BuildLeadForm from '@/components/BuildLeadForm'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Custom Sauna & Cold Plunge Builders — Get Free Quotes',
+  title: 'Custom Sauna & Cold Plunge Builders Near You — Free Quotes (2025)',
   description: 'Find qualified sauna builders and cold plunge installation contractors near you. Custom backyard saunas, indoor saunas, cold plunge installations, and contrast therapy setups. Get free quotes from local builders.',
   keywords: ['custom sauna builder', 'sauna installation', 'cold plunge installation', 'backyard sauna', 'home sauna builder', 'sauna contractor near me', 'cold plunge contractor'],
 }
@@ -13,20 +13,50 @@ export const metadata: Metadata = {
 export default function CustomBuildsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-stone-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-20 md:py-28">
-          <div className="max-w-3xl">
+      {/* Hero with background image */}
+      <section className="relative overflow-hidden" style={{ minHeight: '500px' }}>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1745894118353-88e64617e064?w=1600&q=80')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/75 to-neutral-950/60" />
+        <div className="relative max-w-6xl mx-auto px-4 py-24 md:py-32">
+          <div className="max-w-2xl">
             <p className="text-brand-300 uppercase tracking-[0.2em] text-sm font-medium mb-4">Custom Builds & Installation</p>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Build Your Own Sauna or Cold Plunge
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+              Build Your Own<br />Sauna or Cold Plunge
             </h1>
             <p className="text-lg text-stone-300 mb-8 leading-relaxed">
-              Connect with qualified contractors who build custom saunas, cold plunge installations, and contrast therapy setups for homes, Airbnbs, gyms, and commercial spaces. Get free quotes from local builders.
+              Connect with qualified contractors who build custom saunas, cold plunge setups, and contrast therapy installations for homes, Airbnbs, gyms, and commercial spaces.
             </p>
-            <a href="#get-quotes" className="btn-primary text-lg px-8 py-4">
-              Get Free Builder Quotes
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#get-quotes" className="btn-primary text-lg px-8 py-4">
+                Get Free Builder Quotes
+              </a>
+              <Link href="/categories/mobile-sauna-rental" className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-200 text-lg">
+                Or Rent Instead
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Stats */}
+      <section className="bg-stone-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 py-5">
+          <div className="grid grid-cols-3 gap-6 text-center">
+            <div>
+              <p className="text-2xl font-bold">$5K–$100K+</p>
+              <p className="text-stone-400 text-sm mt-1">Project Range</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold">2–8 Weeks</p>
+              <p className="text-stone-400 text-sm mt-1">Typical Build Time</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold">20+ Cities</p>
+              <p className="text-stone-400 text-sm mt-1">Builders Listed</p>
+            </div>
           </div>
         </div>
       </section>
@@ -42,12 +72,12 @@ export default function CustomBuildsPage() {
             {[
               { icon: Flame, title: 'Custom Outdoor Saunas', desc: 'Barrel saunas, cabin saunas, and custom-designed outdoor builds. Wood-fired or electric. Built to your specs and your space.', price: '$5,000 – $25,000+' },
               { icon: Home, title: 'Indoor Home Saunas', desc: 'Basement, bathroom, or garage conversions. Traditional Finnish, infrared, or steam. Built into your existing space.', price: '$3,000 – $15,000' },
-              { icon: Droplets, title: 'Cold Plunge Installation', desc: 'In-ground or above-ground cold plunge tubs with chiller systems. Residential and commercial.', price: '$3,000 – $15,000' },
+              { icon: Droplets, title: 'Cold Plunge Installation', desc: 'In-ground or above-ground cold plunge setups with chiller systems. Residential and commercial.', price: '$3,000 – $15,000' },
               { icon: Hammer, title: 'Contrast Therapy Setups', desc: 'Full hot-cold installations — sauna + cold plunge built together with optimal layout for the contrast therapy flow.', price: '$8,000 – $40,000+' },
               { icon: Building2, title: 'Commercial Installations', desc: 'Saunas and cold plunges for gyms, wellness centers, spas, hotels, and fitness studios. Built to commercial code.', price: '$15,000 – $100,000+' },
               { icon: Home, title: 'Airbnb & Rental Properties', desc: 'Add a sauna or cold plunge to your rental property. One of the fastest-growing amenity upgrades for short-term rentals.', price: '$5,000 – $20,000' },
             ].map((item, i) => (
-              <div key={i} className="card p-6">
+              <div key={i} className="card p-6 hover:border-brand-200 transition-colors">
                 <item.icon className="w-8 h-8 text-brand-500 mb-4" />
                 <h3 className="font-display font-semibold text-lg mb-2">{item.title}</h3>
                 <p className="text-stone-500 text-sm mb-3">{item.desc}</p>
@@ -66,7 +96,7 @@ export default function CustomBuildsPage() {
             {[
               { step: '1', title: 'Tell Us Your Project', desc: 'Fill out the form with your build type, budget, timeline, and location. Takes under 2 minutes.' },
               { step: '2', title: 'Get Matched with Builders', desc: 'We connect you with qualified sauna and cold plunge contractors in your area. No cold calls, no spam.' },
-              { step: '3', title: 'Compare & Build', desc: 'Review quotes, ask questions, and choose the builder that fits your vision and budget. We stay available if you need help.' },
+              { step: '3', title: 'Compare & Build', desc: 'Review quotes, ask questions, and choose the builder that fits your vision and budget.' },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mx-auto mb-4 font-bold text-lg">
@@ -83,24 +113,35 @@ export default function CustomBuildsPage() {
       {/* Why Build */}
       <section className="section-padding">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="font-display text-3xl font-bold text-center mb-4">Why Build Your Own?</h2>
-          <p className="text-stone-500 text-center mb-10 max-w-2xl mx-auto">
-            A custom sauna or cold plunge pays for itself — in wellness, in property value, and in never having to book a rental again.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-            {[
-              'Use it daily — not just for special events',
-              'Adds $10,000-30,000+ in property value',
-              'Airbnb hosts see 20-40% booking rate increases',
-              'Built exactly to your space and preferences',
-              'Pays for itself in 1-2 years vs. spa memberships',
-              'Health benefits: recovery, sleep, stress, circulation',
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-3">
-                <CheckCircle className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
-                <p className="text-stone-700">{item}</p>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-display text-3xl font-bold mb-4">Why Build Your Own?</h2>
+              <p className="text-stone-500 mb-8">
+                A custom sauna or cold plunge pays for itself — in wellness, in property value, and in never having to book a rental again.
+              </p>
+              <div className="space-y-4">
+                {[
+                  'Use it daily — not just for special events',
+                  'Adds $10,000-30,000+ in property value',
+                  'Airbnb hosts see 20-40% booking rate increases',
+                  'Built exactly to your space and preferences',
+                  'Pays for itself in 1-2 years vs. spa memberships',
+                  'Health benefits: recovery, sleep, stress, circulation',
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-stone-700">{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1759216852954-88e547b8e01f?w=800&q=80"
+                alt="Sauna hot stones with steam"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

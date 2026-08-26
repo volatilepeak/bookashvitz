@@ -12,7 +12,7 @@ export default function AddYourListingPage() {
     <div className="section-padding">
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center mb-10">
-          <Store className="w-12 h-12 mx-auto mb-4 text-stone-600" />
+          <Store className="w-12 h-12 mx-auto mb-4 text-brand-500" />
           <h1 className="font-display text-4xl font-bold mb-4">Add Your Listing</h1>
           <p className="text-stone-600 text-lg">
             List your mobile sauna, cold plunge, or wellness rental business on BookAShvitz and get in front of customers looking for vendors in their area.

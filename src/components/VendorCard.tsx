@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { MapPin, Phone, Globe, Star, Users, Verified } from 'lucide-react'
 import { Vendor } from '@/lib/db'

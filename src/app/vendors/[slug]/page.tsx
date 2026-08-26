@@ -130,23 +130,24 @@ export default async function VendorPage({ params }: Props) {
             {allPhotos.length > 0 && (
               <div className="mb-8">
                 <div className="relative aspect-video rounded-xl overflow-hidden bg-stone-100">
-                  <Image
+                  <img
                     src={allPhotos[0]}
                     alt={vendor.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.currentTarget
+                      target.style.display = 'none'
+                      const fallback = target.nextElementSibling as HTMLElement
+                      if (fallback) fallback.style.display = 'flex'
+                    }}
                   />
-                </div>
-                {allPhotos.length > 1 && (
-                  <div className="grid grid-cols-4 gap-2 mt-2">
-                    {allPhotos.slice(1, 5).map((photo, i) => (
-                      <div key={i} className="relative aspect-video rounded-lg overflow-hidden bg-stone-100">
-                        <Image src={photo} alt={`${vendor.name} photo ${i + 2}`} fill className="object-cover" sizes="25vw" />
-                      </div>
-                    ))}
+                  <div className="w-full h-full items-center justify-center bg-gradient-to-br from-brand-50 to-stone-100 hidden absolute inset-0">
+                    <div className="text-center">
+                      <span className="text-6xl block mb-2">🔥</span>
+                      <span className="text-sm text-stone-400 font-medium">{vendor.name}</span>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             )}
 

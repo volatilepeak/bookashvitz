@@ -8,14 +8,31 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
       {/* Photo */}
       <div className="relative h-48 bg-stone-100 overflow-hidden">
         {vendor.photo_url ? (
-          <img
-            src={vendor.photo_url}
-            alt={vendor.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+          <>
+            <img
+              src={vendor.photo_url}
+              alt={vendor.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                const target = e.currentTarget
+                target.style.display = 'none'
+                const fallback = target.nextElementSibling as HTMLElement
+                if (fallback) fallback.style.display = 'flex'
+              }}
+            />
+            <div className="w-full h-full items-center justify-center bg-gradient-to-br from-brand-50 to-stone-100 hidden">
+              <div className="text-center">
+                <span className="text-4xl block mb-1">🔥</span>
+                <span className="text-xs text-stone-400 font-medium">{vendor.name}</span>
+              </div>
+            </div>
+          </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200">
-            <span className="text-4xl">🔥</span>
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-50 to-stone-100">
+            <div className="text-center">
+              <span className="text-4xl block mb-1">🔥</span>
+              <span className="text-xs text-stone-400 font-medium">{vendor.name}</span>
+            </div>
           </div>
         )}
         {vendor.is_featured && (

@@ -116,7 +116,7 @@ export function VendorSubmitForm() {
                   : 'bg-white border-stone-300 text-stone-600 hover:border-stone-300'
               }`}
             >
-              <span className="mr-2">{cat.icon}</span> {cat.name}
+              {cat.name}
             </button>
           ))}
         </div>

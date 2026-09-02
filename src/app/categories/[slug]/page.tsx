@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getVendorsByCategory } from '@/lib/data'
 import { getCategoryBySlug, CATEGORIES } from '@/lib/constants'
+import CategoryIcon from '@/components/CategoryIcon'
 import VendorCard from '@/components/VendorCard'
 import LeadForm from '@/components/LeadForm'
 import type { Metadata } from 'next'
@@ -35,7 +36,7 @@ export default async function CategoryPage({ params }: Props) {
         </nav>
 
         <div className="mb-10">
-          <span className="text-4xl block mb-4">{cat.icon}</span>
+          <CategoryIcon slug={cat.slug} className="w-10 h-10 text-brand-500 mb-4" />
           <h1 className="font-display text-4xl font-bold mb-3">{cat.name}</h1>
           <p className="text-stone-600 text-lg max-w-2xl">{cat.description}</p>
         </div>

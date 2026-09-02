@@ -4,6 +4,8 @@ import { getFeaturedVendors, getPopularCities, getVendorCount, getCityCount } fr
 import { CATEGORIES, SITE_NAME } from '@/lib/constants'
 import VendorCard from '@/components/VendorCard'
 
+import CategoryIcon from '@/components/CategoryIcon'
+
 export default async function HomePage() {
   const [featured, cities, vendorCount, cityCount] = await Promise.all([
     getFeaturedVendors(),
@@ -120,7 +122,7 @@ export default async function HomePage() {
                 href={`/categories/${cat.slug}`}
                 className="card hover:border-brand-200 transition-colors p-6 flex items-start gap-4"
               >
-                <span className="text-3xl">{cat.icon}</span>
+                <CategoryIcon slug={cat.slug} className="w-8 h-8 text-brand-500 flex-shrink-0" />
                 <div>
                   <h3 className="font-display font-semibold text-lg">{cat.name}</h3>
                   <p className="text-stone-500 text-sm mt-1">{cat.description}</p>

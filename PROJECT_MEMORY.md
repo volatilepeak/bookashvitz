@@ -58,14 +58,28 @@ Name*, email*, phone, service type, event type, event date, duration (2-3hrs / h
 - **Cold Plunge Florida (Annika Hansen):** First vendor to express interest in membership. Wellington FL. Has full proposal deck with pricing ($799-$1,499+). Email: mobile@coldplungeflorida.com
 - **Westside Sweat Club:** Requested removal + sent cease and desist. Set to status='inactive'. Do not re-list.
 
-## Git Push Auth
-GitHub PAT with Contents read/write on volatilepeak/bookashvitz. Set remote URL with token for pushes. Git config: deploy@volatilepeak.com / "Volatile Peak".
+## 2026-09-08 Trust & Content Cleanup
+Major diagnosis: site was polluted with 61 brick-and-mortar vendors (walk-in day spas, luxury bathhouses, Equinox gyms, SweatHouz/beem/Glow franchise infrared studios, hot-tub-only retailers) that mismatched the "book a mobile sauna" positioning. Google was crushing rankings due to query/product mismatch AND ~100 vendors sharing 4 duplicate description templates.
 
-## Next Steps
-1. Fix Resend (new account, verify bookashvitz.com domain)
-2. Vendor outreach for backlinks (biggest SEO lever)
-3. Replace expired vendor photos with real URLs
-4. Rewrite template vendor descriptions with unique content
-5. Enrich vendor data (pricing, services, photos from vendor websites)
+**Shipped in one push:**
+- `sql/2026-09-08-trust-cleanup.sql` — cull 61 vendors to inactive, NULL out all template descriptions (any opener shared by 3+ vendors), dedupe ALTÆR Mobile Sauna, add `faq JSONB` column to vendors table
+- `src/lib/vendorContent.ts` — `generateVendorFAQ(v)` produces 5–6 vendor-specific Q&As from name+city+categories+capacity, `generateFallbackDescription(v)` produces unique paragraph when description is NULL. Different output for builders vs mobile vendors.
+- `src/lib/cityContent.ts` — `generateCityIntro(city, state, stateAbbr, vendors)` produces unique intro varying by vendor count (0/1/2-3/4+) and category mix, using REGION_HOOK for state-specific flavor. `generateCityFAQ()` produces 5 city-specific Q&As.
+- `src/app/vendors/[slug]/page.tsx` — full rewrite. New: `VendorPhotoGallery` (thumbnail strip using photos[] array — was previously ignored), FAQ section, dual JSON-LD schemas (LocalBusiness + FAQPage), fallback description when null, canonical URL.
+- `src/app/states/[stateSlug]/[citySlug]/page.tsx` — full rewrite. New: unique intro paragraph, city FAQ block, FAQPage JSON-LD, canonical URL, better empty-state.
+- `src/components/VendorPhotoGallery.tsx` — client component with clickable thumbnail strip.
+- `src/lib/db.ts` — added `faq: { q, a }[] | null` to Vendor type.
+
+**Impact expected:** vendor page word count roughly triples (description + FAQ + details). City pages now genuinely unique per city — no more 20+ near-identical templates. FAQ schema on every vendor + city page → eligible for rich snippets in SERP. Real product/query alignment after cull.
+
+**Still TODO (next session):**
+1. Fix Resend (new account, verify bookashvitz.com domain) — still blocking lead notifications
+2. Vendor outreach for backlinks (biggest remaining SEO lever)
+3. Replace expired googleusercontent photo URLs with real vendor URLs
+4. Enrich top 20 KEEP_MOBILE and top 20 KEEP_BUILDER vendors with real content + real photos (start with PLUNJ Salt Lake, Von Sauna, PLUNJ Kaysville, Saunable, ALTÆR, The Cove Sauna, Cold Plunge Florida)
+5. Custom vendor.faq JSONB for top 20 vendors (replaces auto-gen with vendor-provided)
 6. Close Cold Plunge Florida as first paying vendor
 7. Configure bookaschvitz.com and bookasauna.co redirects in Vercel
+
+## Git Push Auth
+GitHub PAT with Contents read/write on volatilepeak/bookashvitz. Set remote URL with token for pushes. Git config: deploy@volatilepeak.com / "Volatile Peak".

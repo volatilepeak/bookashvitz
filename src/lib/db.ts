@@ -42,6 +42,7 @@ export interface Vendor {
   claimed: boolean
   claimed_by_email: string | null
   status: string
+  faq: { q: string; a: string }[] | null
   created_at: string
   updated_at: string
 }

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { MapPin, Phone, Globe, Mail, Instagram, Users, DollarSign, CheckCircle, Star } from 'lucide-react'
+import { MapPin, Phone, Globe, Mail, Instagram, Users, DollarSign, CheckCircle, Star, HelpCircle } from 'lucide-react'
 import { getVendorBySlug, getRelatedVendors } from '@/lib/data'
-import VendorImage from '@/components/VendorImage'
+import { generateVendorFAQ, generateFallbackDescription } from '@/lib/vendorContent'
+import VendorPhotoGallery from '@/components/VendorPhotoGallery'
 import VendorCard from '@/components/VendorCard'
 import LeadForm from '@/components/LeadForm'
 import type { Metadata } from 'next'
@@ -13,10 +14,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const vendor = await getVendorBySlug(slug)
   if (!vendor) return { title: 'Vendor Not Found' }
-  const cats = vendor.categories?.join(', ') || 'Mobile Sauna & Cold Plunge'
+  const primary = vendor.categories?.[0] || 'Mobile Sauna & Cold Plunge'
+  const desc = vendor.description
+    ? vendor.description.replace(/\s+/g, ' ').slice(0, 155)
+    : `Book ${vendor.name} for ${primary.toLowerCase()} in ${vendor.city}, ${vendor.state_abbr}. See services, pricing range, and request a free quote in under 60 seconds.`
   return {
-    title: `${vendor.name} — ${cats} in ${vendor.city}, ${vendor.state_abbr} | Pricing & Reviews`,
-    description: vendor.description ? vendor.description.slice(0, 160) : `Book ${vendor.name} for ${cats.toLowerCase()} in ${vendor.city}, ${vendor.state}. Get a free quote.`,
+    title: `${vendor.name} — ${primary} in ${vendor.city}, ${vendor.state_abbr}`,
+    description: desc,
+    openGraph: {
+      title: `${vendor.name} — ${vendor.city}, ${vendor.state_abbr}`,
+      description: desc,
+      ...(vendor.photo_url && { images: [vendor.photo_url] }),
+    },
+    alternates: { canonical: `/vendors/${vendor.slug}` },
   }
 }
 
@@ -28,32 +38,50 @@ export default async function VendorPage({ params }: Props) {
   const allPhotos = [vendor.photo_url, ...(vendor.photos || [])].filter(Boolean) as string[]
   const related = await getRelatedVendors(vendor.id, vendor.city_slug, vendor.state_slug)
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: vendor.name,
-    description: vendor.description || `${vendor.name} offers mobile sauna and cold plunge rental services in ${vendor.city}, ${vendor.state}.`,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: vendor.city,
-      addressRegion: vendor.state_abbr,
-      postalCode: vendor.zip_code || undefined,
-      addressCountry: 'US',
-    },
-    ...(vendor.phone && { telephone: vendor.phone }),
-    ...(vendor.website && { url: vendor.website }),
-    ...(vendor.photo_url && { image: vendor.photo_url }),
-    ...(vendor.rating && {
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: vendor.rating,
-        bestRating: 5,
-        ...(vendor.reviews && { reviewCount: vendor.reviews }),
-      },
-    }),
-  }
+  // Vendor-specific FAQ — from DB if set, otherwise generated per vendor
+  const faqs = vendor.faq && vendor.faq.length > 0 ? vendor.faq : generateVendorFAQ(vendor)
 
-  const hasDetails = vendor.price_range || vendor.min_guests || vendor.max_guests || vendor.service_area || vendor.setup_types
+  // Description — real vendor content preferred, else unique fallback
+  const displayDescription = vendor.description || generateFallbackDescription(vendor)
+
+  // LocalBusiness + FAQPage JSON-LD (two schemas, one page)
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: vendor.name,
+      description: displayDescription,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: vendor.city,
+        addressRegion: vendor.state_abbr,
+        postalCode: vendor.zip_code || undefined,
+        addressCountry: 'US',
+      },
+      ...(vendor.phone && { telephone: vendor.phone }),
+      ...(vendor.website && { url: vendor.website }),
+      ...(vendor.photo_url && { image: vendor.photo_url }),
+      ...(vendor.rating && {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: vendor.rating,
+          bestRating: 5,
+          ...(vendor.reviews && { reviewCount: vendor.reviews }),
+        },
+      }),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ]
+
+  const hasDetails = vendor.price_range || vendor.min_guests || vendor.max_guests || vendor.service_area
   const hasContact = vendor.phone || vendor.email || vendor.website || vendor.instagram
 
   return (
@@ -74,13 +102,9 @@ export default async function VendorPage({ params }: Props) {
           <div className="grid lg:grid-cols-3 gap-10">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              {/* Photo */}
+              {/* Photo Gallery */}
               {allPhotos.length > 0 && (
-                <div className="mb-8">
-                  <div className="relative aspect-video rounded-xl overflow-hidden bg-stone-100">
-                    <VendorImage src={allPhotos[0]} alt={vendor.name} className="w-full h-full object-cover" fallbackName={vendor.name} />
-                  </div>
-                </div>
+                <VendorPhotoGallery photos={allPhotos} vendorName={vendor.name} />
               )}
 
               {/* Header */}
@@ -119,17 +143,15 @@ export default async function VendorPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Description - only if exists */}
-              {vendor.description && (
-                <div className="mb-8">
-                  <p className="text-stone-700 leading-relaxed whitespace-pre-line">{vendor.description}</p>
-                </div>
-              )}
+              {/* Description (real or fallback — always unique per vendor) */}
+              <div className="mb-8">
+                <p className="text-stone-700 leading-relaxed whitespace-pre-line">{displayDescription}</p>
+              </div>
 
               {/* Details - only if we have real data */}
               {hasDetails && (
-                <div className="mb-8">
-                  <h2 className="font-display text-xl font-semibold mb-3">Details</h2>
+                <div className="mb-10">
+                  <h2 className="font-display text-xl font-semibold mb-4">Details</h2>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {vendor.price_range && (
                       <div className="flex items-center gap-3">
@@ -167,6 +189,24 @@ export default async function VendorPage({ params }: Props) {
                   </div>
                 </div>
               )}
+
+              {/* FAQ Section — every vendor gets this, always unique */}
+              <div className="mb-10 border-t border-stone-200 pt-10">
+                <div className="flex items-center gap-2 mb-6">
+                  <HelpCircle className="w-6 h-6 text-brand-500" />
+                  <h2 className="font-display text-2xl font-semibold">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                <div className="space-y-6">
+                  {faqs.map((f, i) => (
+                    <div key={i} className="border-b border-stone-100 pb-6 last:border-0">
+                      <h3 className="font-semibold text-stone-900 mb-2">{f.q}</h3>
+                      <p className="text-stone-600 leading-relaxed">{f.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* CTA */}
               <div className="bg-stone-900 rounded-xl p-6 md:p-8 text-white mb-10">

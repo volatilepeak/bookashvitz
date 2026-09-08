@@ -18,9 +18,7 @@ BEGIN;
 UPDATE vendors SET status = 'inactive' WHERE id IN (
   -- Fixed walk-in facilities mis-tagged as mobile/rental:
   (SELECT id FROM vendors WHERE name = 'PLUNJ Salt Lake' AND city = 'South Salt Lake' AND status='active' LIMIT 1),
-  (SELECT id FROM vendors WHERE name = 'Von Sauna' AND city = 'Kirkland' AND status='active' LIMIT 1),
   (SELECT id FROM vendors WHERE name = 'PLUNJ' AND city = 'Kaysville' AND status='active' LIMIT 1),
-  (SELECT id FROM vendors WHERE name = 'Good Health Saunas - Mall of America' AND status='active' LIMIT 1),
   (SELECT id FROM vendors WHERE name = 'Heat Haven Sauna Park' AND status='active' LIMIT 1),
   (SELECT id FROM vendors WHERE name = 'Melt Well Sauna & Plunge Studio' AND status='active' LIMIT 1),
   -- Mobile massage / mobile beauty spa (no sauna/plunge component):

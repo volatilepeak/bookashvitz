@@ -73,13 +73,20 @@ Major diagnosis: site was polluted with 61 brick-and-mortar vendors (walk-in day
 **Impact expected:** vendor page word count roughly triples (description + FAQ + details). City pages now genuinely unique per city — no more 20+ near-identical templates. FAQ schema on every vendor + city page → eligible for rich snippets in SERP. Real product/query alignment after cull.
 
 **Still TODO (next session):**
-1. Fix Resend (new account, verify bookashvitz.com domain) — still blocking lead notifications
-2. Vendor outreach for backlinks (biggest remaining SEO lever)
-3. Replace expired googleusercontent photo URLs with real vendor URLs
-4. Enrich top 20 KEEP_MOBILE and top 20 KEEP_BUILDER vendors with real content + real photos (start with PLUNJ Salt Lake, Von Sauna, PLUNJ Kaysville, Saunable, ALTÆR, The Cove Sauna, Cold Plunge Florida)
-5. Custom vendor.faq JSONB for top 20 vendors (replaces auto-gen with vendor-provided)
-6. Close Cold Plunge Florida as first paying vendor
-7. Configure bookaschvitz.com and bookasauna.co redirects in Vercel
+1. **Enrich remaining top mobile vendors** — pull real descriptions/photos from vendor websites for: The Cove Sauna and Cold Plunge (Denver), Bywater Sauna (Seattle), Avanto Cold Plunge & Sauna (Park City), Utah Lake Sauna (Provo), Sauna Strong (Minneapolis), Embrace North (Minneapolis), Elevated Embers (Tampa), The Plunge and Sauna Method (Miami), Saunable (Eagan MN)
+2. Fix Resend (new account, verify bookashvitz.com domain) — still blocking lead notifications
+3. Vendor outreach for backlinks (biggest remaining SEO lever)
+4. Replace expired googleusercontent photo URLs with real vendor URLs
+5. Close Cold Plunge Florida as first paying vendor
+6. Configure bookaschvitz.com and bookasauna.co redirects in Vercel
+
+## 2026-09-08 (later) Second-pass cull + Cold Plunge Florida enrichment
+Discovered category contamination on the KEEP_MOBILE survivors: PLUNJ (16-location walk-in chain), Von Sauna (fixed floating sauna at Carillon Point Marina Kirkland), Heat Haven Sauna Park, Melt Well Sauna & Plunge Studio, Good Health Saunas Mall of America (retail showroom) had all self-tagged as "Mobile Sauna Rental" or "Cold Plunge Rental" in DB but are fixed walk-in facilities. Additionally, 10 mobile MASSAGE-only vendors with no sauna/plunge component were tagged "Wellness Event Packages" and appearing on the site.
+
+**Shipped in `sql/2026-09-08b-second-cull-and-enrichment.sql`:**
+- Culled 16 more vendors to inactive (6 fixed walk-in facilities + 10 mobile massage-only). Total culled to date: 77 of original 257 = ~180 active.
+- Restored Cold Plunge Florida with real vendor-provided content: full description ($799–$1,499+ pricing tiers, service area, contact), 6 vendor-specific FAQ entries in the new faq JSONB column, service_area, price_range fields populated.
+- Also enriched Mobile Sauna FL and ALTÆR Mobile Sauna with vendor-specific descriptions from vendor site research.
 
 ## Git Push Auth
 GitHub PAT with Contents read/write on volatilepeak/bookashvitz. Set remote URL with token for pushes. Git config: deploy@volatilepeak.com / "Volatile Peak".

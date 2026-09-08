@@ -72,13 +72,23 @@ Major diagnosis: site was polluted with 61 brick-and-mortar vendors (walk-in day
 
 **Impact expected:** vendor page word count roughly triples (description + FAQ + details). City pages now genuinely unique per city — no more 20+ near-identical templates. FAQ schema on every vendor + city page → eligible for rich snippets in SERP. Real product/query alignment after cull.
 
-**Still TODO (next session):**
-1. **Enrich remaining top mobile vendors** — pull real descriptions/photos from vendor websites for: The Cove Sauna and Cold Plunge (Denver), Bywater Sauna (Seattle), Avanto Cold Plunge & Sauna (Park City), Utah Lake Sauna (Provo), Sauna Strong (Minneapolis), Embrace North (Minneapolis), Elevated Embers (Tampa), The Plunge and Sauna Method (Miami), Saunable (Eagan MN)
-2. Fix Resend (new account, verify bookashvitz.com domain) — still blocking lead notifications
-3. Vendor outreach for backlinks (biggest remaining SEO lever)
-4. Replace expired googleusercontent photo URLs with real vendor URLs
-5. Close Cold Plunge Florida as first paying vendor
-6. Configure bookaschvitz.com and bookasauna.co redirects in Vercel
+## 2026-09-08 (third pass) Bywater / Saunable / Elevated Embers enriched, 3 more walk-ins culled
+Culled 3 more mis-tagged vendors: The Cove Sauna and Cold Plunge (1361 S Broadway Denver — walk-in with 5 infrared saunas + 3 cold plunges + gym), Avanto Cold Plunge & Sauna (Kimball Junction Park City — walk-in spa with M-F 6am-10pm hours), Utah Lake Sauna (4400 W Center St Provo — walk-in medical spa). Total culled to date: 80 of original 257 = ~177 active.
+
+Enriched with real vendor-specific content (description + FAQ JSONB) after verifying via web search:
+- **Bywater Sauna** (Seattle) — Nate Garberich's MN-built barrel saunas that travel between Alki/Golden Gardens/Lincoln Park/Leschi Marina. 16-person capacity per barrel. $35-40 drop-in.
+- **Saunable** (Eagan MN) — Ed & Colleen Kranz's wood-fired mobile sauna, 185°F. AP/ABC News featured. Twin Cities metro + greater Minnesota.
+- **Elevated Embers** (Tampa) — Nate & Kelly Hammond's Finnish-style Canadian cedar mobile sauna. 25x10x11 ft, seats 6. Three packages: Essential Embers, Embers + Ice, Elevated Experience.
+
+## Vendors still needing enrichment (next pass)
+Verify mobile vs walk-in and enrich if legit: Sauna Strong (Minneapolis), Embrace North (Minneapolis), The Plunge and Sauna Method (Miami). Plus continue down the KEEP_MOBILE list by review count.
+
+**Other TODO:**
+1. Fix Resend (new account, verify bookashvitz.com domain) — still blocking lead notifications
+2. Vendor outreach for backlinks (biggest remaining SEO lever)
+3. Replace expired googleusercontent photo URLs with real vendor URLs
+4. Close Cold Plunge Florida as first paying vendor
+5. Configure bookaschvitz.com and bookasauna.co redirects in Vercel
 
 ## 2026-09-08 (later) Second-pass cull + Cold Plunge Florida enrichment
 Discovered category contamination on the KEEP_MOBILE survivors: PLUNJ (16-location walk-in chain), Von Sauna (fixed floating sauna at Carillon Point Marina Kirkland), Heat Haven Sauna Park, Melt Well Sauna & Plunge Studio, Good Health Saunas Mall of America (retail showroom) had all self-tagged as "Mobile Sauna Rental" or "Cold Plunge Rental" in DB but are fixed walk-in facilities. Additionally, 10 mobile MASSAGE-only vendors with no sauna/plunge component were tagged "Wellness Event Packages" and appearing on the site.

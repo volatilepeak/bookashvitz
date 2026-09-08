@@ -80,6 +80,19 @@ Enriched with real vendor-specific content (description + FAQ JSONB) after verif
 - **Saunable** (Eagan MN) — Ed & Colleen Kranz's wood-fired mobile sauna, 185°F. AP/ABC News featured. Twin Cities metro + greater Minnesota.
 - **Elevated Embers** (Tampa) — Nate & Kelly Hammond's Finnish-style Canadian cedar mobile sauna. 25x10x11 ft, seats 6. Three packages: Essential Embers, Embers + Ice, Elevated Experience.
 
+## 2026-09-08 (fourth pass) Premium tier display activated + Cold Plunge Florida promoted
+**Shipped:**
+- `src/components/VendorCard.tsx` — premium vendor cards get amber-400 ring, gold "Premium Vendor" banner at top of card, amber-tinted verified badge, amber-tinted category pills, amber hover state on name. Non-premium featured vendors still get the brand-orange featured pill.
+- `src/app/vendors/[slug]/page.tsx` — premium vendors get a gold gradient banner section at the top of the vendor detail page ("Premium Vendor — Verified and hand-picked by the BookAShvitz team"), plus amber-tinted verified badge.
+- `src/lib/data.ts` — updated `ORDER BY` on all vendor list queries to sort `is_premium DESC, is_featured DESC, ...` so premium vendors show at the top of every city, state, and category page.
+- `sql/2026-09-08d-premium-tier-activation.sql` — sets Cold Plunge Florida as `is_premium=true, is_featured=true, is_verified=true, listing_tier='premium'`. Also marks Bywater Sauna, Saunable, Elevated Embers as featured+verified (not premium — non-paying) so the richest-content vendors get top placement in their respective cities.
+- Also culls "The Plunge and Sauna Method" (walk-in facility in Deerfield Beach with 1000+ reviews at 1574 SE 3rd Ct).
+
+**Monetization model:**
+- Free tier: standard listing, no ring, no top-of-page placement.
+- Featured (comped for now): brand-orange "Featured" pill, sorts above free vendors, no ring.
+- Premium (paid): gold ring around card, "Premium Vendor" banner at top of card, gold banner on detail page, top-of-page placement everywhere. Cold Plunge Florida is the first premium vendor — pricing target from PROJECT_MEMORY is $49/mo founding, $99/mo standard.
+
 ## Vendors still needing enrichment (next pass)
 Verify mobile vs walk-in and enrich if legit: Sauna Strong (Minneapolis), Embrace North (Minneapolis), The Plunge and Sauna Method (Miami). Plus continue down the KEEP_MOBILE list by review count.
 

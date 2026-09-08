@@ -107,16 +107,35 @@ export default async function VendorPage({ params }: Props) {
                 <VendorPhotoGallery photos={allPhotos} vendorName={vendor.name} />
               )}
 
+              {/* Premium banner */}
+              {(vendor.is_premium || vendor.listing_tier === 'premium') && (
+                <div className="mb-6 -mt-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-amber-950 px-4 py-3 rounded-lg flex items-center gap-3 shadow-sm">
+                  <div className="bg-white/30 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                      <path d="M12 2L14.5 8.5L21 9L16 13.5L17.5 20L12 16.5L6.5 20L8 13.5L3 9L9.5 8.5L12 2Z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-bold text-sm uppercase tracking-wide">Premium Vendor</div>
+                    <div className="text-xs text-amber-900/80">Verified and hand-picked by the BookAShvitz team.</div>
+                  </div>
+                </div>
+              )}
+
               {/* Header */}
               <div className="mb-8">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  {vendor.is_featured && (
+                  {vendor.is_featured && !(vendor.is_premium || vendor.listing_tier === 'premium') && (
                     <span className="inline-flex items-center gap-1 text-xs font-semibold bg-brand-50 text-brand-700 px-2.5 py-1 rounded-full">
                       <Star className="w-3 h-3" /> Featured
                     </span>
                   )}
                   {vendor.is_verified && (
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full">
+                    <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full ${
+                      (vendor.is_premium || vendor.listing_tier === 'premium')
+                        ? 'bg-amber-100 text-amber-800'
+                        : 'bg-blue-50 text-blue-700'
+                    }`}>
                       <CheckCircle className="w-3 h-3" /> Verified
                     </span>
                   )}

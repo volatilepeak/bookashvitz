@@ -26,7 +26,7 @@ export async function getVendorsByCity(citySlug: string, stateSlug: string): Pro
   const rows = await sql`
     SELECT * FROM vendors
     WHERE city_slug = ${citySlug} AND state_slug = ${stateSlug} AND status = 'active'
-    ORDER BY is_featured DESC, is_premium DESC, name ASC
+    ORDER BY is_premium DESC, is_featured DESC, name ASC
   `
   return rows as Vendor[]
 }
@@ -36,7 +36,7 @@ export async function getVendorsByState(stateSlug: string): Promise<Vendor[]> {
   const rows = await sql`
     SELECT * FROM vendors
     WHERE state_slug = ${stateSlug} AND status = 'active'
-    ORDER BY is_featured DESC, city ASC, name ASC
+    ORDER BY is_premium DESC, is_featured DESC, city ASC, name ASC
   `
   return rows as Vendor[]
 }
@@ -46,7 +46,7 @@ export async function getVendorsByCategory(category: string): Promise<Vendor[]> 
   const rows = await sql`
     SELECT * FROM vendors
     WHERE ${category} = ANY(categories) AND status = 'active'
-    ORDER BY is_featured DESC, name ASC
+    ORDER BY is_premium DESC, is_featured DESC, name ASC
   `
   return rows as Vendor[]
 }
@@ -188,7 +188,7 @@ export async function getRelatedVendors(vendorId: string, citySlug: string, stat
     ORDER BY
       CASE WHEN city_slug = ${citySlug} THEN 0 ELSE 1 END,
       CASE WHEN state_slug = ${stateSlug} THEN 0 ELSE 1 END,
-      is_featured DESC, rating DESC NULLS LAST
+      is_premium DESC, is_featured DESC, rating DESC NULLS LAST
     LIMIT ${limit}
   `
   return rows as Vendor[]

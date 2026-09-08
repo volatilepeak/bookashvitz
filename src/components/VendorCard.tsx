@@ -1,12 +1,29 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, Globe, Star, Users, Verified } from 'lucide-react'
+import { MapPin, Phone, Globe, Star, Users, Verified, Award } from 'lucide-react'
 import { Vendor } from '@/lib/db'
 
 export function VendorCard({ vendor }: { vendor: Vendor }) {
+  const isPremium = vendor.is_premium || vendor.listing_tier === 'premium'
+
   return (
-    <Link href={`/vendors/${vendor.slug}`} className="card overflow-hidden group">
+    <Link
+      href={`/vendors/${vendor.slug}`}
+      className={`card overflow-hidden group relative block transition-all ${
+        isPremium
+          ? 'ring-2 ring-amber-400 shadow-lg hover:shadow-xl hover:ring-amber-500'
+          : 'hover:shadow-md'
+      }`}
+    >
+      {/* Premium banner — sits at the very top of the card */}
+      {isPremium && (
+        <div className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-amber-950 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 flex items-center justify-center gap-1.5">
+          <Award className="w-3.5 h-3.5" />
+          Premium Vendor
+        </div>
+      )}
+
       {/* Photo */}
       <div className="relative h-48 bg-stone-100 overflow-hidden">
         {vendor.photo_url ? (
@@ -37,13 +54,19 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
             </div>
           </div>
         )}
-        {vendor.is_featured && (
+
+        {/* Featured pill (top-left) */}
+        {vendor.is_featured && !isPremium && (
           <div className="absolute top-3 left-3 bg-brand-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
             <Star className="w-3 h-3" /> Featured
           </div>
         )}
+
+        {/* Verified pill (top-right) */}
         {vendor.is_verified && (
-          <div className="absolute top-3 right-3 bg-white/90 text-stone-700 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+          <div className={`absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 ${
+            isPremium ? 'bg-amber-500 text-white' : 'bg-white/90 text-stone-700'
+          }`}>
             <Verified className="w-3 h-3" /> Verified
           </div>
         )}
@@ -51,10 +74,12 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-display font-bold text-lg text-stone-900 group-hover:text-brand-600 transition-colors mb-1">
+        <h3 className={`font-display font-bold text-lg mb-1 transition-colors ${
+          isPremium ? 'text-stone-900 group-hover:text-amber-700' : 'text-stone-900 group-hover:text-brand-600'
+        }`}>
           {vendor.name}
         </h3>
-        <div className="flex items-center gap-1.5 text-stone-500 text-sm mb-3">
+        <div className="flex items-center gap-1.5 text-stone-500 text-sm mb-3 flex-wrap">
           <MapPin className="w-3.5 h-3.5" />
           <span>{vendor.city}, {vendor.state_abbr}</span>
           {vendor.rating && (
@@ -86,7 +111,11 @@ export function VendorCard({ vendor }: { vendor: Vendor }) {
         {/* Categories */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {vendor.categories.slice(0, 3).map(cat => (
-            <span key={cat} className="text-xs bg-stone-50 text-stone-600 px-2 py-0.5 rounded-full border border-stone-200">
+            <span key={cat} className={`text-xs px-2 py-0.5 rounded-full border ${
+              isPremium
+                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                : 'bg-stone-50 text-stone-600 border-stone-200'
+            }`}>
               {cat}
             </span>
           ))}

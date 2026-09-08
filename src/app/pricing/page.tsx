@@ -26,8 +26,8 @@ const PREMIUM_PERKS = [
   },
   {
     icon: PhoneCall,
-    title: 'Priority lead routing',
-    body: 'When a lead comes in for your city, we send it to Premium vendors first. Free listings get matched only if no Premium vendor in their area can take the booking. If you\'re the only Premium in your city, you\'re getting first shot at every lead.',
+    title: 'Lead routing',
+    body: "Every quote request that matches your city and services gets routed to you directly. Premium vendors are the vendors in our routing system — Free listings are directory presence only. If you're the only Premium in your market, you're getting every matched lead.",
   },
   {
     icon: Layers,
@@ -60,12 +60,12 @@ const WHY_LIST = [
   {
     icon: Users,
     title: 'Real buying intent',
-    body: 'Our visitors search "mobile sauna for wedding" or "cold plunge rental corporate event." They\'re planning something specific and they\'re ready to book. When they contact you, they\'re not tire-kickers.',
+    body: 'Our visitors search "mobile sauna for wedding" or "cold plunge rental corporate event." They\'re planning something specific and they\'re ready to book. Premium vendors are the ones we connect them with.',
   },
   {
     icon: MessageSquare,
     title: 'You own the customer',
-    body: "No booking fee. No commission. No middleman on the transaction. We route the lead to you and step aside — whatever you close is 100% yours.",
+    body: "No booking fee. No commission. No middleman on the transaction. When a Premium vendor closes a lead we routed, whatever they close is 100% theirs.",
   },
   {
     icon: Zap,
@@ -77,7 +77,7 @@ const WHY_LIST = [
 const FAQS = [
   {
     q: "What's the difference between Free and Premium, really?",
-    a: "Placement, presentation, and lead priority. Free listings show up on your city and category pages with a basic auto-generated page — good enough to be findable. Premium puts you at the top of every page you appear on, wraps your listing in gold, gives you a fully vendor-written page with 10 photos and custom FAQ, and sends you leads first. Free gets you in the directory; Premium makes you the vendor people call."
+    a: "Free is a directory listing — you show up on your city and category pages with a basic page and stay findable in Google. Premium is a business channel — top placement everywhere, gold-ring treatment, fully vendor-written page with 10 photos and custom FAQ, and lead routing. Free gets you in the directory. Premium is how vendors actually get booked through us."
   },
   {
     q: "Why is founding pricing capped at 25 vendors?",
@@ -93,11 +93,11 @@ const FAQS = [
   },
   {
     q: "Can I upgrade later?",
-    a: "Yes — anytime. Start Free, see if the leads are coming in, upgrade to Premium when you want more. Downgrade or cancel with one email. No lock-in."
+    a: "Yes — anytime. Start Free to test your listing content, upgrade to Premium when you're ready to unlock lead routing and top placement. Downgrade or cancel with one email. No lock-in."
   },
   {
     q: "What if you don't have vendors in my area yet?",
-    a: "That's actually the best time to list. Being one of the first Premium vendors in your city means you catch inbound leads with zero competition, and your page has time to build search authority before other vendors show up. Add your listing free — we\'ll route any leads from your area to you as they come in."
+    a: "That's the best time to lock in Premium. Being the only Premium vendor in your city means every matched quote in your area comes to you, and your page has time to build search authority before other vendors show up. Founding pricing at $49/mo makes that lock-in cheap."
   },
 ]
 
@@ -139,7 +139,6 @@ export default function PricingPage() {
                   'Listed on your city, state, and category pages',
                   'Direct phone / website / Instagram links',
                   'Auto-generated FAQ block (LocalBusiness + FAQ schema)',
-                  'Leads routed to you when no Premium vendor covers the area',
                   'One photo',
                   'No expiration, no commission on bookings',
                 ].map((f, i) => (
@@ -187,7 +186,7 @@ export default function PricingPage() {
                   'Vendor-written 500+ word description (not templated)',
                   'Vendor-written 6-question FAQ → renders as FAQ rich snippets in Google',
                   '10-photo gallery (thumbnail strip + full-view)',
-                  'Priority lead routing — you get matched first',
+                  'Lead routing — matched quotes come to you directly',
                   'Monthly performance report',
                   'Direct support (email or text — 24 hr response)',
                 ].map((f, i) => (
@@ -291,7 +290,7 @@ export default function PricingPage() {
             Ready to get listed?
           </h2>
           <p className="text-stone-600 mb-8 max-w-xl mx-auto">
-            Start with a free listing. Upgrade to Premium once you&apos;re seeing leads and want to top your market.
+            Start with a free listing to lock in your directory presence. Upgrade to Premium when you want top placement and matched leads.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/add-your-listing" className="btn-primary">

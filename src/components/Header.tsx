@@ -28,6 +28,9 @@ export function Header() {
             <Link href="/custom-builds" className="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">
               Custom Builds
             </Link>
+            <Link href="/pricing" className="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">
+              For Vendors
+            </Link>
             <Link href="/blog" className="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">
               Blog
             </Link>
@@ -59,6 +62,9 @@ export function Header() {
               </Link>
               <Link href="/custom-builds" onClick={() => setMobileOpen(false)} className="py-2 text-stone-700 hover:text-stone-900 font-medium">
                 Custom Builds
+              </Link>
+              <Link href="/pricing" onClick={() => setMobileOpen(false)} className="py-2 text-stone-700 hover:text-stone-900 font-medium">
+                For Vendors
               </Link>
               <Link href="/blog" onClick={() => setMobileOpen(false)} className="py-2 text-stone-700 hover:text-stone-900 font-medium">
                 Blog

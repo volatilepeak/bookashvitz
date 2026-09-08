@@ -54,6 +54,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li><Link href="/get-quotes" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Get Quotes</Link></li>
               <li><Link href="/add-your-listing" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Add Your Listing</Link></li>
+              <li><Link href="/pricing" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Vendor Pricing</Link></li>
               <li><Link href="/blog" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Blog</Link></li>
               <li><Link href="/states" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">All States</Link></li>
               <li><a href="mailto:hello@bookashvitz.com" className="text-warm-400 hover:text-stone-50 text-sm transition-colors">Contact Us</a></li>

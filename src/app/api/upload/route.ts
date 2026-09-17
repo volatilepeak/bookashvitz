@@ -1,11 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { put } from '@vercel/blob'
 
+// Force Node.js runtime (not edge) — File/FormData streaming is more reliable
+export const runtime = 'nodejs'
+export const maxDuration = 30
+
 const MAX_SIZE = 5 * 1024 * 1024 // 5MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify the blob token is present at runtime
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json(
+        { error: 'Blob storage not configured (BLOB_READ_WRITE_TOKEN missing).' },
+        { status: 500 }
+      )
+    }
+
     const formData = await request.formData()
     const file = formData.get('file') as File | null
 
@@ -40,13 +52,14 @@ export async function POST(request: NextRequest) {
     const blob = await put(filename, file, {
       access: 'public',
       addRandomSuffix: false,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     })
 
     return NextResponse.json({ url: blob.url }, { status: 200 })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Upload error:', error)
     return NextResponse.json(
-      { error: 'Upload failed. Please try again.' },
+      { error: `Upload failed: ${error?.message || 'Unknown error'}` },
       { status: 500 }
     )
   }

@@ -107,6 +107,7 @@ interface VendorSubmissionData {
   state: string
   categories: string[]
   description?: string | null
+  photo_url?: string | null
 }
 
 export async function sendVendorSubmissionNotification(data: VendorSubmissionData) {
@@ -130,6 +131,15 @@ export async function sendVendorSubmissionNotification(data: VendorSubmissionDat
             <tr><td style="padding: 8px 0; font-weight: bold; color: #1e4620;">Categories</td><td style="padding: 8px 0;">${data.categories.join(', ')}</td></tr>
           </table>
           ${data.description ? `<div style="margin-top: 16px; padding: 16px; background: #f0f5f0; border-radius: 8px;"><strong style="color: #1e4620;">Description:</strong><br/>${data.description}</div>` : ''}
+          ${data.photo_url ? `
+            <div style="margin-top: 16px;">
+              <strong style="color: #1e4620; display: block; margin-bottom: 8px;">Uploaded Photo:</strong>
+              <a href="${data.photo_url}" style="display: block;">
+                <img src="${data.photo_url}" alt="Vendor photo" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e5ddd0;" />
+              </a>
+              <p style="margin: 8px 0 0; font-size: 12px; color: #6b7280;"><a href="${data.photo_url}" style="color: #6b7280;">${data.photo_url}</a></p>
+            </div>
+          ` : ''}
         </div>
       </div>
     `,
